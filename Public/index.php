@@ -14,4 +14,13 @@ spl_autoload_register(function ($class) {
 });
 
 $router = new Router();
-$router->test();
+$router->addRoute('');
+$router->addRoute('posts/new', ['controller' => 'Posts', 'action' => 'new']);
+$router->addRoute('{controller}/{action}');
+$router->addRoute('{controller}/{id:\d+}/{action}');
+echo '<pre>';
+print_r($router->getRoutes());
+if ($router->resolve()) {
+    print_r($router->getParams());
+}
+echo '</pre>';

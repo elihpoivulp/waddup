@@ -1,5 +1,11 @@
 <?php
 
+namespace Source\Core;
+
+use Source\Exceptions\ControllerNotFound;
+use Source\Exceptions\MethodNotFound;
+use Source\Exceptions\PageNotFound;
+
 class Router
 {
     /**
@@ -27,8 +33,49 @@ class Router
 
     public function __construct()
     {
-        $path = defined(CONTROLLERS_PATH) ? CONTROLLERS_PATH : 'Source\\App\\Controllers';
+        $path = defined(CONTROLLERS_PATH) ? CONTROLLERS_PATH : 'Source\\App\\Controllers\\';
         $this->controller_namespace = str_replace('/', '\\', $path);
+    }
+
+    /**
+     * Creates the controller and executes the action method
+     * @return void
+     * @throws PageNotFound
+     * @throws ControllerNotFound
+     * @throws MethodNotFound
+     */
+    public function dispatch()
+    {
+        // $_SERVER['QUERY_STRING'] and $_GET['_url'] are ignored when the server
+        // is served using PHP's built-in web server.
+        $this->current_path = $_SERVER['QUERY_STRING'] ?? $_SERVER['REQUEST_URI'] ?? $_GET['_url'];
+
+        $result = $this->removeQueryString()->resolve();
+
+        // If a matching route in the routing table is found:
+        if ($result) {
+            $controller = $this->toStudlyCaps($this->params['controller'] ?? $this->default_controller);
+            $controller = $this->getNamespace() . $this->removeSlashes($controller);
+
+            if (class_exists($controller)) {
+                $action = $this->toCamelCase($this->params['action'] ?? $this->default_action);
+                $this->params['request_uri'] = $this->current_path;
+
+                // Instantiate the controller
+                $object = new $controller();
+
+                // If action exists in the controller, execute:
+                if (is_callable([$object, $action])) {
+                    $object->$action();
+                } else {
+                    throw new MethodNotFound("Method \"$action\" (in controller $controller) not found");
+                }
+            } else {
+                throw new ControllerNotFound("Controller class \"$controller\" not found");
+            }
+        } else {
+            throw new PageNotFound('No route matched');
+        }
     }
 
     /**
@@ -42,17 +89,7 @@ class Router
         $this->routes[$this->cleanURL($route)] = $params;
     }
 
-    public function getRoutes(): array
-    {
-        return $this->routes;
-    }
-
-    public function getParams(): array
-    {
-        return $this->params;
-    }
-
-    public function resolve(): bool // turn into private
+    protected function resolve(): bool
     {
         $url = $_SERVER['QUERY_STRING'] ?? $_SERVER['REQUEST_URI'];
         $has_match = false;
@@ -72,6 +109,20 @@ class Router
         return $has_match;
     }
 
+    /**
+     * Removes query string to the requested URL, so it would not be confused
+     * as action
+     * @return self
+     */
+    protected function removeQueryString(): self
+    {
+        if (!empty($this->current_path)) {
+            $parts = explode('&', $this->current_path, 2);
+            $this->current_path = !str_contains($parts[0], '=') ? $parts[0] : '';
+        }
+        return $this;
+    }
+
     protected function cleanURL(string $url): string
     {
         $url = $this->removeSlashes($url);
@@ -82,9 +133,31 @@ class Router
         return $this->compileURL($url);
     }
 
-    protected function removeSlashes(string $url): string
+    protected function removeSlashes(string $string): string
     {
-        return trim($url, '/');
+        return trim($string, '/');
+    }
+
+    /**
+     * ConvertStringToStudlyFormat
+     * TODO: maybe separate this as a helper function
+     * @param string $string
+     * @return string
+     */
+    protected function toStudlyCaps(string $string): string
+    {
+        return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $string)));
+    }
+
+    /**
+     * convertStringToCamelCase
+     * TODO: maybe separate this as a helper function
+     * @param string $string
+     * @return string
+     */
+    protected function toCamelCase(string $string): string
+    {
+        return lcfirst($this->toStudlyCaps($string));
     }
 
     /**
@@ -104,5 +177,18 @@ class Router
         $url = preg_replace('/{([a-zA-Z\d\-_]+):([^}]+)}/', '(?P<$1>$2)', $url);
 
         return '/^' . $url . '$/i';
+    }
+
+    /**
+     * Returns controller in a given namespace if provided
+     * @return string
+     */
+    protected function getNamespace(): string
+    {
+        $namespace = $this->controller_namespace;
+        if (key_exists('namespace', $this->params)) {
+            $namespace .= $this->params['namespace'] . '\\';
+        }
+        return $namespace;
     }
 }

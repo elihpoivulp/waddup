@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Core;
+namespace Waddup\Core;
 
 /**
  * Handles data from the request
@@ -29,6 +29,15 @@ class Request
         return $this->current_path;
     }
 
+    protected static function appRoot(): string
+    {
+        return  sprintf(
+            '%s%s',
+            self::getBaseURL(),
+            substr($_SERVER['SCRIPT_NAME'], 0, (strpos($_SERVER['SCRIPT_NAME'], "/Public") + 1))
+        );
+    }
+
     /**
      * Cleans a single POST/GET value
      * @param int $type
@@ -39,5 +48,20 @@ class Request
     public static function filterInput(int $type, string $key, int $default_filter = FILTER_SANITIZE_FULL_SPECIAL_CHARS): string
     {
         return filter_input($type, $key, $default_filter);
+    }
+
+    public static function getBaseURL(): string
+    {
+        return sprintf('%s%s', self::getProtocol(), $_SERVER['HTTP_HOST']);
+    }
+
+    public static function getProtocol(): string
+    {
+        return 'http' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . '://';
+    }
+
+    public static function getSiteURL(): string
+    {
+        return self::appRoot();
     }
 }

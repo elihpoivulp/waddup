@@ -10,3 +10,14 @@ function fix_dir_sep(string $string, string|array $search = '\\', string $sep = 
 {
     return str_replace($search, $sep, $string);
 }
+
+/**
+ * Removes slashes from both ends the string
+ * @param string $string
+ * @param string $slash
+ * @return string
+ */
+function trim_slashes(string $string, string $slash = '/'): string
+{
+    return trim($string, $slash);
+}

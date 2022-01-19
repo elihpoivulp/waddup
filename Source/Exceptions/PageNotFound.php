@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Exceptions;
+namespace Waddup\Exceptions;
 
 use Exception;
 

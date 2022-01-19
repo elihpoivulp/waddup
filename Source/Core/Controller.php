@@ -1,12 +1,12 @@
 <?php
 
-namespace Source\Core;
+namespace Waddup\Core;
 
-use Source\Exceptions\MethodNotFound;
+use Waddup\Exceptions\MethodNotFound;
 
 abstract class Controller
 {
-    public function __construct(protected View $view)
+    public function __construct(protected View $view, Request $request)
     {
     }
 

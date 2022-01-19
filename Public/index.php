@@ -2,22 +2,12 @@
 /**
  * Front controller
  */
-
-use Source\Core\Request;
-use Source\Core\Router;
-use Source\Core\View;
-
 define('BASE_PATH', dirname(__DIR__));
 require_once BASE_PATH . '/Source/bootstrap.php';
 
-// autoload classes
-spl_autoload_register(function ($class) {
-    $file = BASE_PATH . "/$class.php";
-    $file = fix_dir_sep($file);
-    if (file_exists($file) && is_readable($file)) {
-        require $file;
-    }
-});
+use Waddup\Core\Request;
+use Waddup\Core\Router;
+use Waddup\Core\View;
 
 $router = new Router();
 $router->addRoute('');

@@ -1,8 +1,10 @@
 <?php
 
-namespace Source\Exceptions;
+namespace Waddup\Exceptions;
 
-class ViewFileNotFound extends \Exception
+use Exception;
+
+class ViewFileNotFound extends Exception
 {
 
 }

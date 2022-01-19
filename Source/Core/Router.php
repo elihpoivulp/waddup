@@ -1,10 +1,10 @@
 <?php
 
-namespace Source\Core;
+namespace Waddup\Core;
 
-use Source\Exceptions\ControllerNotFound;
-use Source\Exceptions\MethodNotFound;
-use Source\Exceptions\PageNotFound;
+use Waddup\Exceptions\ControllerNotFound;
+use Waddup\Exceptions\MethodNotFound;
+use Waddup\Exceptions\PageNotFound;
 
 class Router
 {
@@ -33,7 +33,7 @@ class Router
 
     public function __construct()
     {
-        $path = defined(CONTROLLERS_PATH) ? CONTROLLERS_PATH : 'Source\\App\\Controllers\\';
+        $path = defined(CONTROLLERS_PATH) ? CONTROLLERS_PATH : 'Waddup\\App\\Controllers\\';
         $this->controller_namespace = str_replace('/', '\\', $path);
     }
 
@@ -59,7 +59,7 @@ class Router
                 $this->params['request_uri'] = $this->current_path;
 
                 // Instantiate the controller
-                $object = new $controller($view);
+                $object = new $controller($view, $request);
 
                 // If action exists in the controller, execute:
                 if (is_callable([$object, $action])) {
@@ -132,7 +132,7 @@ class Router
 
     protected function removeSlashes(string $string): string
     {
-        return trim($string, '/');
+        return trim_slashes($string);
     }
 
     /**

@@ -1,15 +1,16 @@
 <?php
 
-namespace Source\Core;
+namespace Waddup\Core;
 
 use Exception;
-use Source\Exceptions\ViewFileNotFound;
+//use Waddup\Exceptions\ViewFileNotFound;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
 
 class View
 {
@@ -32,6 +33,15 @@ class View
                 'strict_variables' => true
             ]);
             $twig->addExtension(new DebugExtension());
+            $twig->addGlobal('app', 'Waddup'); // TODO: pull from .env
+
+            $url_func = function (string $uri = '') {
+                return trim_slashes(Request::getSiteURL() . $uri);
+            };
+
+            $twig->addFunction(new TwigFunction('load_asset', $url_func));
+            $twig->addFunction(new TwigFunction('site_url', $url_func));
+
             self::$twig = $twig;
         }
     }
@@ -64,7 +74,21 @@ class View
         self::$template_namespace = $name;
     }
 
-    private function getTemplate(string $template_name, ?string $namespace): string
+    /**
+     * Register a template path
+     * @throws Exception
+     */
+    public function registerTemplatePath(string $directory = '', string $namespace = ''): void
+    {
+        try {
+            $this->addPath($directory, $namespace);
+        } catch (Exception $e) {
+            throw new Exception('Cannot register template path.');
+        }
+    }
+
+
+    private function getTemplate(string $template_name, ?string $namespace = null): string
     {
         $namespace = $namespace ?? static::$template_namespace;
         if (!empty($namespace)) {

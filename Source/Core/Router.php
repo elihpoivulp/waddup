@@ -44,7 +44,7 @@ class Router
      * @throws ControllerNotFound
      * @throws MethodNotFound
      */
-    public function dispatch()
+    public function dispatch(View $view)
     {
         // $_SERVER['QUERY_STRING'] and $_GET['_url'] are ignored when the server
         // is served using PHP's built-in web server.
@@ -62,7 +62,7 @@ class Router
                 $this->params['request_uri'] = $this->current_path;
 
                 // Instantiate the controller
-                $object = new $controller();
+                $object = new $controller($view);
 
                 // If action exists in the controller, execute:
                 if (is_callable([$object, $action])) {

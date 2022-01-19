@@ -6,6 +6,10 @@ use Source\Exceptions\MethodNotFound;
 
 abstract class Controller
 {
+    public function __construct(protected View $view)
+    {
+    }
+
     /**
      * @throws MethodNotFound
      */

@@ -4,6 +4,7 @@
  */
 
 use Source\Core\Router;
+use Source\Core\View;
 use Source\Exceptions\ControllerNotFound;
 use Source\Exceptions\MethodNotFound;
 use Source\Exceptions\PageNotFound;
@@ -14,7 +15,7 @@ require_once BASE_PATH . '/Source/bootstrap.php';
 // autoload classes
 spl_autoload_register(function ($class) {
     $file = BASE_PATH . "/$class.php";
-    $file = str_replace('\\', '/', $file);
+    $file = fix_dir_sep($file);
     if (file_exists($file) && is_readable($file)) {
         require $file;
     }
@@ -25,4 +26,4 @@ $router->addRoute('');
 $router->addRoute('posts/new', ['controller' => 'Posts', 'action' => 'new']);
 $router->addRoute('{controller}/{action}');
 $router->addRoute('{controller}/{id:\d+}/{action}');
-$router->dispatch();
+$router->dispatch(new View());

@@ -3,17 +3,23 @@
 namespace Source\App\Controllers;
 
 use Source\Core\Controller;
+use Source\Exceptions\ViewFileNotFound;
 
 class Home extends Controller
 {
+    /**
+     * @throws ViewFileNotFound
+     */
     public function indexAction()
     {
-        echo 'Hello from index!';
+        $this->view->render('test_page.php', [
+            'title' => 'Test page'
+        ]);
     }
 
-    protected function before(): bool
-    {
-        echo 'You must be logged in!';
-        return false;
-    }
+//    protected function before(): bool
+//    {
+//        echo 'You must be logged in!';
+//        return false;
+//    }
 }

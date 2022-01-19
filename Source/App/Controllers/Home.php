@@ -2,17 +2,18 @@
 
 namespace Source\App\Controllers;
 
+use Exception;
 use Source\Core\Controller;
 use Source\Exceptions\ViewFileNotFound;
 
 class Home extends Controller
 {
     /**
-     * @throws ViewFileNotFound
+     * @throws Exception
      */
     public function indexAction()
     {
-        $this->view->render('test_page.php', [
+        $this->view->render('test_page.twig', [
             'title' => 'Test page'
         ]);
     }

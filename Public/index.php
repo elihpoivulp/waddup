@@ -5,9 +5,6 @@
 
 use Source\Core\Router;
 use Source\Core\View;
-use Source\Exceptions\ControllerNotFound;
-use Source\Exceptions\MethodNotFound;
-use Source\Exceptions\PageNotFound;
 
 define('BASE_PATH', dirname(__DIR__));
 require_once BASE_PATH . '/Source/bootstrap.php';

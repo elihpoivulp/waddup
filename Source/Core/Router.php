@@ -44,12 +44,9 @@ class Router
      * @throws ControllerNotFound
      * @throws MethodNotFound
      */
-    public function dispatch(View $view)
+    public function dispatch(View $view, Request $request)
     {
-        // $_SERVER['QUERY_STRING'] and $_GET['_url'] are ignored when the server
-        // is served using PHP's built-in web server.
-        $this->current_path = $_SERVER['QUERY_STRING'] ?? $_SERVER['REQUEST_URI'] ?? $_GET['_url'];
-
+        $this->current_path = $this->removeSlashes($request->getPath());
         $result = $this->removeQueryString()->resolve();
 
         // If a matching route in the routing table is found:

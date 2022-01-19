@@ -3,6 +3,7 @@
  * Front controller
  */
 
+use Source\Core\Request;
 use Source\Core\Router;
 use Source\Core\View;
 
@@ -23,4 +24,4 @@ $router->addRoute('');
 $router->addRoute('posts/new', ['controller' => 'Posts', 'action' => 'new']);
 $router->addRoute('{controller}/{action}');
 $router->addRoute('{controller}/{id:\d+}/{action}');
-$router->dispatch(new View());
+$router->dispatch(new View(), new Request());

@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "fomantic-ui": "^2.8.8"
+  },
+  "scripts": {
+    "build:jquery": "cp node_modules/jquery/dist/jquery.slim.min.js Public/assets/vendor/jquery/"
   }
 }

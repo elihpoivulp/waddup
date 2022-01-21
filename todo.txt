@@ -1,1 +1,2 @@
 update read me to add php version
+update installation section of read me

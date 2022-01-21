@@ -1,12 +1,7 @@
 {% extends 'base.twig' %}
 {% block main %}
     <section class="ui very padded raised segment posts-section">
-        <div class="mb-8">
-            <div class="ui large header">
-                <h2>Featured</h2>
-            </div>
-            <div class="ui divider"></div>
-        </div>
+        {% include 'components/segment-header.twig' with {'segment_title': 'Login'} %}
         <article class="ui container featured-content">
             {#                <div class="ui small image"> #}
             {#                    <img src="{{ load_placeholder() }}"> #}

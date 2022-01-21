@@ -1,4 +1,4 @@
-<a class="ui float right dropdown item" href="javascript:void(0);">
+<div class="ui float right dropdown item">
     <i class="hamburger icon"></i> <i class="dropdown icon"></i>
     <div class="menu">
         <div class="item">
@@ -6,17 +6,17 @@
             <em data-emoji=":frog:" class="emoji"></em>
             Nicko Gamba
         </div>
-        <div class="item">
+        <a class="item" href="{{ site_url('login') }}">
             <i class="key icon"></i>
             {#            <em data-emoji=":wave:" class="emoji"></em> #}
             Login
-        </div>
-        <div class="item">
+        </a>
+        <a class="item" href="{{ site_url('register') }}">
             <i class="signup icon"></i>
             {#                    <em data-emoji=":no_entry:" class="emoji"></em> #}
             {#            <em data-emoji=":white_check_mark:" class="emoji"></em> #}
             Register
-        </div>
+        </a>
         <div class="divider"></div>
         <div class="header">Settings</div>
         <div class="item">
@@ -25,4 +25,4 @@
             Dark mode
         </div>
     </div>
-</a>
+</div>

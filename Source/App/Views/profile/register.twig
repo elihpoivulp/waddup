@@ -1,0 +1,37 @@
+{% extends 'base.twig' %}
+{% block main %}
+    <div class="ui very padded raised segment">
+        {% include 'components/segment-header.twig' with {
+            'segment_title': 'Register',
+            'subtitle': '<p> Or <a href=" ' ~ site_url('login') ~ '" class="ui tertiary button">Login</a></p>'
+        } %}
+        <form class="ui form" method="post">
+            <!--TODO: add CSRF here later-->
+            <div class="fields">
+                <div class="ten wide field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Name" required minlength="4" maxlength="70">
+                </div>
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Username" required minlength="4" maxlength="32">
+                </div>
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Email" required minlength="4" maxlength="70">
+            </div>
+            <div class="fields">
+                <div class="eight wide field">
+                    <label for="password">Password</label>
+                    <input type="text" name="password" id="password" placeholder="Password" required minlength="4" maxlength="32">
+                </div>
+                <div class="eight wide field">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="text" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required minlength="4" maxlength="32">
+                </div>
+            </div>
+            <button class="ui positive button" type="submit">Register</button>
+        </form>
+    </div>
+{% endblock main %}

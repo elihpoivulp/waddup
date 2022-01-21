@@ -1,0 +1,26 @@
+{% extends 'base.twig' %}
+{% block main %}
+    <div class="ui very padded raised segment">
+        {% include 'components/segment-header.twig' with {
+            'segment_title': 'Login',
+            'subtitle': '<p> Or <a href=" ' ~ site_url('register') ~ '" class="ui tertiary button">Register</a></p>'
+        } %}
+        <form class="ui form" method="post">
+            <!--TODO: add CSRF here later-->
+            <div class="field">
+                <label for="usermail">Username or Email</label>
+                <input type="text" name="usermail" id="usermail" placeholder="Username or Email" required minlength="4" maxlength="70">
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" placeholder="Password" required minlength="4" maxlength="32">
+            </div>
+            <button class="ui positive button" type="submit">Login</button>
+            <div class="mt-4">
+                <div class="field">
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock main %}

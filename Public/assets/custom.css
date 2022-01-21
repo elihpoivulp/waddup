@@ -93,8 +93,13 @@ section.ui.posts-section {
 }
 
 @media (max-width: 640px) {
-    section.very.padded.segment.posts-section {
-        padding-left: 1.4em;
-        padding-right: 1.4em;
+    .very.padded.segment {
+        padding-left: 1.8em;
+        padding-right: 1.8em;
+    }
+
+    article.ui.container.featured-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }

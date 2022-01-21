@@ -19,7 +19,9 @@
 <div class="ui borderless main menu">
     <div class="ui text container">
         <div class="ui large header item">
-            <h1>{{ app|capitalize }}</h1>
+            <h1>
+                <a href="/">{{ app|capitalize }}</a>
+            </h1>
         </div>
         {% include 'includes/dropdown-menu.twig' %}
     </div>

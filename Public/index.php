@@ -11,7 +11,12 @@ use Waddup\Core\View;
 
 $router = new Router();
 $router->addRoute('');
-$router->addRoute('posts/new', ['controller' => 'Posts', 'action' => 'new']);
+
+// general route
 $router->addRoute('{controller}/{action}');
-$router->addRoute('{controller}/{id:\d+}/{action}');
+
+// login route
+$router->addRoute('login', ['controller' => 'Login']);
+$router->addRoute('register', ['controller' => 'Register']);
+
 $router->dispatch(new View(), new Request());

@@ -1,0 +1,10 @@
+<div class="mb-8">
+    <div class="ui medium header">
+        <h2>{{ segment_title }}</h2>
+    </div>
+    {% if subtitle is defined %}
+        {% autoescape false %}
+            {{ subtitle }}
+        {% endautoescape %}
+    {% endif %}
+</div>

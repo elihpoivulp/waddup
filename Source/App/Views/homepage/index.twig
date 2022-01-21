@@ -9,7 +9,7 @@
             <header class="ui medium header">
                 <h1>Title</h1>
             </header>
-            <p class="text-gray-500">2 days ago</p>
+{#            <p class="text-gray-500">2 days ago</p>#}
             <div class="py-4 description featured-description">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque dolorum fugit illo iusto, laborum
@@ -24,14 +24,17 @@
             </div>
             <div class="mt-4 featured-footer extra">
                 <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-                <span class="left floated like">
-                          <i class="like icon"></i>
-                          Like
-                        </span>
-                <span class="right floated star">
-                          <i class="star icon"></i>
-                          Favorite
-                        </span>
+{#                <span class="left floated like">#}
+{#                          <i class="like icon"></i>#}
+{#                          Like#}
+{#                        </span>#}
+{#                <span class="right floated star">#}
+{#                          <i class="star icon"></i>#}
+{#                          Favorite#}
+{#                        </span>#}
+            </div>
+            <div class="ui bottom right attached teal label comments-label" data-title="Comments" data-content="23" data-position="left center">
+                <i class="comments icon"></i> 23
             </div>
         </article>
     </section>
@@ -46,23 +49,30 @@
                     <header class="ui medium header">
                         <h1>Title</h1>
                     </header>
-                    <div class="meta">
-                        <p class="text-gray-500">2 days ago</p>
-                    </div>
+                        <div class="meta">
+                            <p class="text-gray-500">
+                                2 hrs ago
+                            </p>
+                        </div>
                     <div class="description py-2">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad ea ipsum labore magnam quibusdam
                             sit</p>
                     </div>
                     <div class="extra">
                         <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-                        <span class="left floated like">
-                          <i class="like icon"></i>
-                          Like
-                        </span>
-                        <span class="right floated star">
-                          <i class="star icon"></i>
-                          Favorite
-                        </span>
+                        <div class="ui right floated teal label comments-label" data-title="Comments" data-content="23" data-position="left center">
+                            <i class="comments icon"></i> 23
+                        </div>
+{#                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username#}
+{#                        <span class="left floated like">#}
+{#                          <i class="like icon"></i>#}
+{#                          Like#}
+{#                        </span>#}
+{#                        <span class="right floated star">#}
+{#                          <i class="star icon"></i>#}
+{#                          Favorite#}
+{#                        </span>#}
+
                     </div>
                 </div>
             </div>

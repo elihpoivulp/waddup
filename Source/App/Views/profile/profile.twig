@@ -1,0 +1,63 @@
+{% extends 'base.twig' %}
+{% block main %}
+    <div class="ui grid stackable container">
+        <div class="row" id="article">
+            <div class="six wide column">
+                <div class="ui card">
+                    <div class="image">
+                        <img src="{{ load_placeholder() }}">
+                    </div>
+                    <div class="content">
+                        <a class="header">Kristy</a>
+                        <div class="meta">
+                            <span class="date">Joined in 2013</span>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="paperclip icon"></i>
+                            22 Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide right floated column">
+                {#                    <div class="ui secondary segment">#}
+                {#                        <h4 class="ui header">About</h4>#}
+                {#                    </div>#}
+                <div class="ui text menu profile-menu">
+{#                    <div class="header item">Sort By</div>#}
+                    <a class="item active tab-item" data-tab="active-posts">
+                        Closest
+                    </a>
+                    <a class="item tab-item" data-tab="xxx">
+                        New Posts
+                    </a>
+                    <a class="item tab-item" data-tab="archive">
+                        Archive
+                    </a>
+                </div>
+                <div class="ui bottom attached tab active" data-tab="active-posts">
+                    <h2 class="ui large header">
+                        <div class="content">Sample blog post</div>
+                        <div class="sub header">
+                            March 6, 2017 by <a href="#root">Jack</a>
+                        </div>
+                    </h2>
+                    <div class="ui hidden divider"></div>
+                    <p>
+                        This blog post shows a few different types of content that's
+                        supported and styled with Semantic-UI. Basic typesetting, list, and
+                        code are all supported.
+                    </p>
+                </div>
+                <div class="ui bottom attached tab" data-tab="xxx">
+                    New Posts
+                </div>
+                <div class="ui bottom attached tab" data-tab="archive">
+                    archive
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

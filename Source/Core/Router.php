@@ -88,10 +88,9 @@ class Router
 
     protected function resolve(): bool
     {
-        $url = $_SERVER['QUERY_STRING'] ?? $_SERVER['REQUEST_URI'];
         $has_match = false;
         foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $this->removeSlashes($url), $matches)) {
+            if (preg_match($route, $this->removeSlashes($this->current_path), $matches)) {
                 foreach ($matches as $key => $value) {
                     // if the key is a parameter defined in the compiled url,
                     // add its value as addition parameter

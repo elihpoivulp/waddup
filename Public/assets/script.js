@@ -15,4 +15,12 @@ $(document).ready(function () {
     $(".main.menu  .ui.dropdown").dropdown({
         on: "click"
     });
+
+    $('.ui.label.comments-label').popup({
+            on: 'hover'
+        });
+
+    // profile menu
+    $('.profile-menu .item').tab();
+
 });

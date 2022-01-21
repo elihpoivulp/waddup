@@ -1,137 +1,47 @@
 {% extends 'base.twig' %}
 {% block main %}
-    <section class="ui very padded raised segment posts-section">
-        {% include 'components/segment-header.twig' with {'segment_title': 'Login'} %}
-        <article class="ui container featured-content">
-            {#                <div class="ui small image"> #}
-            {#                    <img src="{{ load_placeholder() }}"> #}
-            {#                </div> #}
-            <header class="ui medium header">
-                <h1>Title</h1>
-            </header>
-{#            <p class="text-gray-500">2 days ago</p>#}
-            <div class="py-4 description featured-description">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. At atque dolorum fugit illo iusto, laborum
-                    nam necessitatibus perspiciatis quia quibusdam sequi similique ullam ut. Animi illum in quod
-                    suscipit veniam.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, eius facilis incidunt nemo odit
-                    provident rerum suscipit voluptatibus. Alias aliquid error fugit laborum maiores molestias mollitia,
-                    perspiciatis tenetur veritatis vero.
-                </p>
-            </div>
-            <div class="mt-4 featured-footer extra">
-                <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-{#                <span class="left floated like">#}
-{#                          <i class="like icon"></i>#}
-{#                          Like#}
-{#                        </span>#}
-{#                <span class="right floated star">#}
-{#                          <i class="star icon"></i>#}
-{#                          Favorite#}
-{#                        </span>#}
-            </div>
-            <div class="ui bottom right attached teal label comments-label" data-title="Comments" data-content="23" data-position="left center">
-                <i class="comments icon"></i> 23
-            </div>
-        </article>
-    </section>
-    <div class="ui divider"></div>
-    <section class="ui container posts-section">
-        <div class="ui stackable divided items">
-            <div class="item">
-                <div class="image">
-                    <img class="" src="{{ load_placeholder() }}">
-                </div>
-                <div class="content">
-                    <header class="ui medium header">
-                        <h1>Title</h1>
-                    </header>
-                        <div class="meta">
-                            <p class="text-gray-500">
-                                2 hrs ago
-                            </p>
-                        </div>
-                    <div class="description py-2">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad ea ipsum labore magnam quibusdam
-                            sit</p>
+    <div>
+        <div class="ui very padded raised segment single-post">
+            <a href="javascript:void(0);">
+                <article class="ui container featured-content">
+                    {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}
+                    <div class="py-4 mb-4 description featured-description">
+                        <p>
+                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?
+                        </p>
                     </div>
-                    <div class="extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-                        <div class="ui right floated teal label comments-label" data-title="Comments" data-content="23" data-position="left center">
-                            <i class="comments icon"></i> 23
-                        </div>
-{#                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username#}
-{#                        <span class="left floated like">#}
-{#                          <i class="like icon"></i>#}
-{#                          Like#}
-{#                        </span>#}
-{#                        <span class="right floated star">#}
-{#                          <i class="star icon"></i>#}
-{#                          Favorite#}
-{#                        </span>#}
-
+                    <div class="mt-4 featured-footer extra">
+                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
                     </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <header class="ui medium header">
-                        <h1>Title</h1>
-                    </header>
-                    <div class="meta">
-                        <p class="text-gray-500">2 days ago</p>
+                    <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
+                         data-position="top center">
+                        <i class="comments icon"></i> 23
                     </div>
-                    <div class="description py-2">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, eius fugit incidunt iure
-                            pariatur voluptates? Amet, delectus dolore eos ex impedit magni, nesciunt quos, rem sapiente
-                            sunt ut vel vitae!</p>
-                    </div>
-                    <div class="extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <header class="ui medium header">
-                        <h1>Title</h1>
-                    </header>
-                    <div class="meta">
-                        <p class="text-gray-500">2 days ago</p>
-                    </div>
-                    <div class="description py-2">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, eius fugit incidunt iure
-                            pariatur voluptates? Amet, delectus dolore eos ex impedit magni, nesciunt quos, rem sapiente
-                            sunt ut vel vitae!</p>
-                    </div>
-                    <div class="extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="{{ load_placeholder() }}">
-                </div>
-                <div class="content">
-                    <header class="ui medium header">
-                        <h1>Title</h1>
-                    </header>
-                    <div class="meta">
-                        <p class="text-gray-500">2 days ago</p>
-                    </div>
-                    <div class="description py-2">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad ea ipsum labore magnam quibusdam
-                            sit</p>
-                    </div>
-                    <div class="extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> Username
-                    </div>
-                </div>
-            </div>
+                </article>
+            </a>
         </div>
-    </section>
+        <div class="ui divider"></div>
+    </div>
+    <div>
+        <div class="ui very padded raised segment single-post">
+            <a href="javascript:void(0);">
+                <article class="ui container featured-content">
+                    {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}
+                    <div class="py-4 mb-4 description featured-description">
+                        <p>
+                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?
+                        </p>
+                    </div>
+                    <div class="mt-4 featured-footer extra">
+                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
+                    </div>
+                    <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
+                         data-position="top center">
+                        <i class="comments icon"></i> 23
+                    </div>
+                </article>
+            </a>
+        </div>
+        <div class="ui divider"></div>
+    </div>
 {% endblock main %}

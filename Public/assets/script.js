@@ -16,11 +16,17 @@ $(document).ready(function () {
         on: "click"
     });
 
-    $('.ui.label.comments-label').popup({
+    $('.ui.label.with-popup').popup({
             on: 'hover'
         });
 
     // profile menu
     $('.profile-menu .item').tab();
+
+    $('.ui.upward.dropdown.item')
+        .dropdown({
+            direction: 'upward'
+        })
+    ;
 
 });

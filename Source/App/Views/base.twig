@@ -4,9 +4,8 @@
     <meta charset="utf-8"/>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
-    <meta name="description" content="Waddup">
-    <meta name="keywords" content="waddup, whatsup"/>
-    <meta name="author" content="Nicko Gamba"/>
+    {% block post_meta %}
+    {% endblock post_meta %}
     <title>{% block title %} {{ app ~ ' | ' ~ title ?? app }} {% endblock title %}</title>
     {% include 'includes/stylesheets.twig' %}
 </head>

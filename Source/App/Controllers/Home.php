@@ -7,6 +7,7 @@ use Waddup\Core\Controller;
 use Waddup\Core\Request;
 use Waddup\Core\View;
 use Waddup\Exceptions\ViewFileNotFound;
+use Waddup\Models\Post;
 
 class Home extends Controller
 {
@@ -28,7 +29,8 @@ class Home extends Controller
     public function indexAction()
     {
         $this->view->render('index.twig', [
-            'title' => 'Home'
+            'title' => 'Home',
+            'posts' => Post::getAll()
         ]);
     }
 

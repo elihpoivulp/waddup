@@ -1,47 +1,29 @@
 {% extends 'base.twig' %}
+{% block post_meta %}
+    {% include 'includes/post-meta.twig' with {'description': 'Waddup means what is up.'} %}
+{% endblock post_meta %}
 {% block main %}
-    <div>
-        <div class="ui very padded raised segment single-post">
-            <a href="javascript:void(0);">
-                <article class="ui container featured-content">
-                    {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}
-                    <div class="py-4 mb-4 description featured-description">
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?
-                        </p>
-                    </div>
-                    <div class="mt-4 featured-footer extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
-                    </div>
-                    <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
-                         data-position="top center">
-                        <i class="comments icon"></i> 23
-                    </div>
-                </article>
-            </a>
+    {% for post in posts %}
+        <div>
+            <div class="ui very padded raised segment single-post">
+                <a href="javascript:void(0);">
+                    <article class="ui container featured-content">
+                        {% include 'components/segment-header.twig' with {'segment_title': post.title} %}
+                        <small class="text-gray-500">{{ post.date_created|date('F j, o') }}</small>
+                        <div class="py-4 mb-4 description featured-description">
+                            {{ post.body }}
+                        </div>
+                        <div class="mt-4 featured-footer extra">
+                            <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
+                        </div>
+                        <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
+                             data-position="top center">
+                            <i class="comments icon"></i> 23
+                        </div>
+                    </article>
+                </a>
+            </div>
+            <div class="ui divider"></div>
         </div>
-        <div class="ui divider"></div>
-    </div>
-    <div>
-        <div class="ui very padded raised segment single-post">
-            <a href="javascript:void(0);">
-                <article class="ui container featured-content">
-                    {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}
-                    <div class="py-4 mb-4 description featured-description">
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?
-                        </p>
-                    </div>
-                    <div class="mt-4 featured-footer extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
-                    </div>
-                    <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
-                         data-position="top center">
-                        <i class="comments icon"></i> 23
-                    </div>
-                </article>
-            </a>
-        </div>
-        <div class="ui divider"></div>
-    </div>
+    {% endfor %}
 {% endblock main %}

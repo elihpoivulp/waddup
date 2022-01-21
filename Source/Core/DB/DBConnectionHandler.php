@@ -8,17 +8,16 @@ use PDOException;
 use Waddup\Config\Config;
 use Waddup\Exceptions\DBError;
 
-class DB
+abstract class DBConnectionHandler
 {
-    // handler
-    private static ?PDO $db = null;
+    protected static ?PDO $handler = null;
 
     /**
      * @throws DBError
      */
-    public function db(): PDO
+    protected static function connect(): PDO
     {
-        if (is_null(self::$db)) {
+        if (is_null(self::$handler)) {
             try {
                 $options = array(
                     PDO::ATTR_PERSISTENT => true,
@@ -26,11 +25,11 @@ class DB
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 );
-                self::$db = new PDO(Config::DB('dsn'), Config::DB('user'), Config::DB('pass'), $options);
+                self::$handler = new PDO(Config::DB('dsn'), Config::DB('user'), Config::DB('pass'), $options);
             } catch (PDOException | Exception $e) {
                 throw new DBError($e->getMessage());
             }
         }
-        return self::$db;
+        return self::$handler;
     }
 }

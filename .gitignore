@@ -3,3 +3,4 @@
 vendor
 node_modules
 .run
+!Public/assets/vendor

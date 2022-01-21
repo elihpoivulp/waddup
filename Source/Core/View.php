@@ -3,6 +3,7 @@
 namespace Waddup\Core;
 
 use Exception;
+
 //use Waddup\Exceptions\ViewFileNotFound;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -35,12 +36,15 @@ class View
             $twig->addExtension(new DebugExtension());
             $twig->addGlobal('app', 'Waddup'); // TODO: pull from .env
 
-            $url_func = function (string $uri = '') {
+            $url_func = function (string $uri = ''): string {
                 return trim_slashes(Request::getSiteURL() . $uri);
             };
 
             $twig->addFunction(new TwigFunction('load_asset', $url_func));
             $twig->addFunction(new TwigFunction('site_url', $url_func));
+            $twig->addFunction(new TwigFunction('load_placeholder', function (string $folder = 'images/placeholders/avatar/large', string $file = 'ade.jpg') use ($url_func): string {
+                return $url_func("assets/$folder/$file");
+            }));
 
             self::$twig = $twig;
         }

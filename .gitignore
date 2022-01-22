@@ -5,3 +5,4 @@ node_modules
 !Public/assets/vendor
 vendor
 todo.txt
+Logs/*

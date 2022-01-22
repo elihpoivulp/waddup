@@ -36,6 +36,7 @@ class ErrorHandler
      * Handles exceptions thrown
      * @param Exception $exception
      * @return void
+     * @throws Exception
      */
     public static function excHandler(Exception $exception)
     {
@@ -44,7 +45,7 @@ class ErrorHandler
             $code = 500;
         }
         http_response_code($code);
-        if (Config::$DEBUG) {
+        if (Config::DEBUG()) {
             $msg = '<h1>Fatal Error</h1>';
             $msg .= self::getMessage($exception);
             exit($msg);

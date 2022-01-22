@@ -6,22 +6,24 @@ class Config
 {
     /**
      * Show errors or not
-     * @var bool
+     * @return bool
      */
-    public static bool $DEBUG = true;
+    public static function DEBUG(): bool
+    {
+        return $_ENV['DEBUG'] ?? 1;
+    }
 
     public static function DB(string $key): string
     {
         $data = [
-            'name' => 'waddup',
-            'user' => 'root',
-            'pass' => '',
-            'host' => 'localhost',
+            'name' => $_ENV['DB_NAME'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASS'],
+            'host' => $_ENV['DB_HOST'],
             'port' => 3306,
-            'driver' => 'mysql'
+            'driver' => $_ENV['DB_DRIVER'],
+            'dsn' => $_ENV['DB_DSN']
         ];
-        $data['dsn'] = "{$data['driver']}:dbname={$data['name']};host={$data['host']};port={$data['port']};charset=utf8";
-
         return $data[$key];
     }
 }

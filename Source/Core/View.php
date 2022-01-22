@@ -63,7 +63,13 @@ class View
         $template_name = $this->getTemplate($template_name, $namespace);
         try {
             echo self::$twig->render($template_name, $context);
-        } catch (LoaderError|RuntimeError|SyntaxError $e) {
+        }
+        catch(LoaderError $e) {
+            // when a 404 or 500 code is received, the loader fails to find
+            // the /error.twig template by looking for it in whichever namespace the current view is using.
+            // so catch the error and directly pass the template instead
+            echo self::$twig->render('error.twig', $context);
+        } catch (RuntimeError|SyntaxError $e) {
             throw new Exception($e->getMessage());
         }
     }
@@ -87,24 +93,8 @@ class View
         try {
             $this->addPath($directory, $namespace);
         } catch (Exception $e) {
-            throw new Exception('Cannot register template path.');
+            throw new Exception($e->getMessage());
         }
-    }
-
-
-    private function getTemplate(string $template_name, ?string $namespace = null): string
-    {
-        $namespace = $namespace ?? static::$template_namespace;
-        if (!empty($namespace)) {
-            if (str_starts_with($template_name, '@')) {
-                // $template_name = preg_replace('/^@\w+\/([\w\d\/.]$)/', "@$namespace/$1", $template_name);
-                $parts = explode('/', $template_name);
-                $template_name = "@$namespace/{$parts[1]}";
-            } else {
-                $template_name = sprintf('@%s/%s', $namespace, $template_name);
-            }
-        }
-        return $template_name;
     }
 
     /**
@@ -121,4 +111,26 @@ class View
             throw new Exception($e->getMessage());
         }
     }
+
+    /**
+     * Gets the registered template
+     * @param string $template_name
+     * @param string|null $namespace
+     * @return string
+     */
+    private function getTemplate(string $template_name, ?string $namespace = null): string
+    {
+        $namespace = $namespace ?? static::$template_namespace;
+        if (!empty($namespace)) {
+            if (str_starts_with($template_name, '@')) {
+                // $template_name = preg_replace('/^@\w+\/([\w\d\/.]$)/', "@$namespace/$1", $template_name);
+                $parts = explode('/', $template_name);
+                $template_name = "@$namespace/{$parts[1]}";
+            } else {
+                $template_name = sprintf('@%s/%s', $namespace, $template_name);
+            }
+        }
+        return $template_name;
+    }
+
 }

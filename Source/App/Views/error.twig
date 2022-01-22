@@ -1,0 +1,15 @@
+{% extends 'base.twig' %}
+{% block main %}
+   <div class="ui container mt-32">
+       <div class="ui massive header">
+           <h1 class="text-7xl mb-4">
+              Oops!
+           </h1>
+           <h2>
+               {% autoescape false %}
+                   {{ data.message }}
+               {% endautoescape %}
+           </h2>
+       </div>
+   </div>
+{% endblock main %}

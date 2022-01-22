@@ -4,6 +4,12 @@ namespace Waddup\Config;
 
 class Config
 {
+    /**
+     * Show errors or not
+     * @var bool
+     */
+    public static bool $DEBUG = false;
+
     public static function DB(string $key): string
     {
         $data = [

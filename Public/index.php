@@ -10,7 +10,12 @@ use Waddup\Core\Request;
 use Waddup\Core\Router;
 use Waddup\Core\View;
 
+// run db check before displaying pages so even static pages
+// that does not use the database will also fail to load.
+Waddup\Core\DB\DBConnectionHandler::testConnection();
+
 $router = new Router();
+
 $router->addRoute('');
 
 // login and register routes

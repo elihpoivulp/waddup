@@ -1,0 +1,1171 @@
+[22-Jan-2022 08:44:01 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:44:22 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:44:23 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:47:23 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:47:23 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('errors/404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:47:49 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:47:49 Asia/Manila] PHP Fatal error:  Uncaught Exception: Looks like you try to load a template outside configured directories (../base.html) in "errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('errors/404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:48:06 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:48:06 Asia/Manila] PHP Fatal error:  Uncaught Exception: There are no registered paths for namespace "errors". in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:48:19 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:48:19 Asia/Manila] PHP Fatal error:  Uncaught Exception: Cannot register template path. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:90
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->registerTemplatePath('errors')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 90
+[22-Jan-2022 08:48:23 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:48:23 Asia/Manila] PHP Fatal error:  Uncaught Exception: Cannot register template path. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:90
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->registerTemplatePath('errors')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 90
+[22-Jan-2022 08:49:38 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:49:38 Asia/Manila] PHP Fatal error:  Uncaught Exception: The "errors" directory does not exist ("/opt/lampp/htdocs/Projects/waddup/Public/errors"). in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:90
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->registerTemplatePath('errors')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 90
+[22-Jan-2022 08:49:57 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:49:57 Asia/Manila] PHP Fatal error:  Uncaught Exception: There are no registered paths for namespace "errors". in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:51:06 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:51:06 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:51:14 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:51:14 Asia/Manila] PHP Fatal error:  Uncaught Exception: Looks like you try to load a template outside configured directories (../base.html) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:51:20 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:51:20 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:51:51 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:51:51 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:52:29 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:52:32 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:52:35 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:52:35 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:53:09 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:54:24 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:54:24 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:55:08 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:55:08 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:55:09 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:55:09 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@errors/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:55:54 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:57:32 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:57:32 Asia/Manila] PHP Fatal error:  Uncaught Exception: There are no registered paths for namespace "errors". in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\Core\View->render('@errors/404.twi...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:58:12 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:58:21 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:58:21 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:58:27 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:58:27 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "./base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:58:30 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:58:30 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:59:02 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:59:02 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php:71
+Stack trace:
+#0 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#1 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php on line 71
+[22-Jan-2022 08:59:12 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:59:12 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:59:49 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:59:49 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 08:59:52 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 08:59:52 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:00:03 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:00:03 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:00:06 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:00:06 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:01:15 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:01:20 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:01:31 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:01:31 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@__main__/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->render('@__main__/404.t...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:02:05 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:05 Asia/Manila] PHP Fatal error:  Uncaught Exception: The "__main__" directory does not exist ("/opt/lampp/htdocs/Projects/waddup/Public/__main__"). in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:90
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(68): Waddup\Core\View->registerTemplatePath('__main__')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 90
+[22-Jan-2022 09:02:07 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:07 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@__main__/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('@__main__/404.t...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:02:09 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:09 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@__main__/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('@__main__/404.t...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:02:19 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:19 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@__main__/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('@__main__/404.t...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:02:21 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:21 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@__main__/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('@__main__/404.t...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:02:27 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:27 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "@__main__/404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('@__main__/404.t...')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:02:35 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:02:35 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "base.html" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views) in "404.twig" at line 1. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(69): Waddup\Core\View->render('404.twig')
+#1 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#2 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 09:03:48 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:03:55 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:04:27 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:04:58 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:05:07 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:05:20 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:05:34 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:05:42 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:05:54 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:06:20 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:07:01 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:07:08 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:07:42 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:07:47 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:08:57 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:09:03 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:09:22 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:09:30 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:09:36 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:09:40 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:10:14 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:10:30 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:11:19 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:11:37 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:11:47 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:11:53 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:12:03 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:12:07 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:12:16 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:12:32 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:12:51 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:13:15 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 09:13:41 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:08:26 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:08:26 Asia/Manila] PHP Fatal error:  Uncaught Exception: Unable to find template "index.twig" (looked into: /opt/lampp/htdocs/Projects/waddup/Source/App/Views). in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/App/Controllers/Error.php(21): Waddup\Core\View->render('index.twig', Array)
+#1 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\App\Controllers\Error->showAction(Array)
+#2 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#3 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 12:08:36 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:08:36 Asia/Manila] PHP Fatal error:  Uncaught Exception: Variable "message" does not exist. in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php:67
+Stack trace:
+#0 /opt/lampp/htdocs/Projects/waddup/Source/App/Controllers/Error.php(21): Waddup\Core\View->render('error.twig', Array)
+#1 /opt/lampp/htdocs/Projects/waddup/Source/Exceptions/ErrorHandler.php(70): Waddup\App\Controllers\Error->showAction(Array)
+#2 [internal function]: Waddup\Exceptions\ErrorHandler::excHandler(Object(Waddup\Exceptions\PageNotFound))
+#3 {main}
+  thrown in /opt/lampp/htdocs/Projects/waddup/Source/Core/View.php on line 67
+[22-Jan-2022 12:08:50 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:09:22 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:10:22 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:10:25 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:10:30 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:10:42 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:10:50 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:10:56 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:00 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:05 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:10 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:30 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:31 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:40 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:11:47 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:15:05 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:21:06 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+
+[22-Jan-2022 12:42:03 Asia/Manila] Uncaught Exception: Waddup\Exceptions\PageNotFound
+Message: No route matched
+Stack trace:
+
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(30): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+
+Thrown in: /opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php on line 74
+
+

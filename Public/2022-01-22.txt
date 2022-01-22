@@ -1,0 +1,54 @@
+[22-Jan-2022 08:24:43 Asia/Manila] <p><strong>Uncaught Exception:</strong> Waddup\Exceptions\PageNotFound</p>
+<p><strong>Message:</strong> No route matched</p>
+<p><strong>Stack trace:</strong></p>
+<pre>
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+</pre>
+<br>
+<p><strong>Thrown in: </strong><em>/opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php</em> on line <em>74</em></p>
+[22-Jan-2022 08:25:55 Asia/Manila] <p><strong>Uncaught Exception:</strong> Waddup\Exceptions\PageNotFound</p>
+<p><strong>Message:</strong> No route matched</p>
+<p><strong>Stack trace:</strong></p>
+<pre>
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+</pre>
+<br>
+<p><strong>Thrown in: </strong><em>/opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php</em> on line <em>74</em></p>
+[22-Jan-2022 08:26:06 Asia/Manila] <p><strong>Uncaught Exception:</strong> Waddup\Exceptions\PageNotFound</p>
+<p><strong>Message:</strong> No route matched</p>
+<p><strong>Stack trace:</strong></p>
+<pre>
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+</pre>
+<br>
+<p><strong>Thrown in: </strong><em>/opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php</em> on line <em>74</em></p>
+[22-Jan-2022 08:26:25 Asia/Manila] <p><strong>Uncaught Exception:</strong> Waddup\Exceptions\PageNotFound</p>
+<p><strong>Message:</strong> No route matched</p>
+<p><strong>Stack trace:</strong></p>
+<pre>
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+</pre>
+<br>
+<p><strong>Thrown in: </strong><em>/opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php</em> on line <em>74</em></p>
+[22-Jan-2022 08:26:33 Asia/Manila] <p><strong>Uncaught Exception:</strong> Waddup\Exceptions\PageNotFound</p>
+<p><strong>Message:</strong> No route matched</p>
+<p><strong>Stack trace:</strong></p>
+<pre>
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+</pre>
+<br>
+<p><strong>Thrown in: </strong><em>/opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php</em> on line <em>74</em></p>
+[22-Jan-2022 08:26:46 Asia/Manila] <p><strong>Uncaught Exception:</strong> Waddup\Exceptions\PageNotFound</p>
+<p><strong>Message:</strong> No route matched</p>
+<p><strong>Stack trace:</strong></p>
+<pre>
+    #0 /opt/lampp/htdocs/Projects/waddup/Public/index.php(26): Waddup\Core\Router->dispatch(Object(Waddup\Core\View), Object(Waddup\Core\Request))
+#1 {main}
+</pre>
+<br>
+<p><strong>Thrown in: </strong><em>/opt/lampp/htdocs/Projects/waddup/Source/Core/Router.php</em> on line <em>74</em></p>

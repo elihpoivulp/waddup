@@ -8,7 +8,7 @@ use PDOException;
 use Waddup\Config\Config;
 use Waddup\Exceptions\DBError;
 
-abstract class DBConnectionHandler
+class DBConnectionHandler
 {
     protected static ?PDO $handler = null;
 
@@ -26,10 +26,23 @@ abstract class DBConnectionHandler
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 );
                 self::$handler = new PDO(Config::DB('dsn'), Config::DB('user'), Config::DB('pass'), $options);
-            } catch (PDOException | Exception $e) {
+            } catch (PDOException|Exception $e) {
                 throw new DBError($e->getMessage());
             }
         }
         return self::$handler;
+    }
+
+    /**
+     * Test if there is connection to the database
+     * @throws DBError
+     */
+    public static function testConnection(): void
+    {
+        try {
+            self::connect();
+        } catch (PDOException|Exception|DBError $e) {
+            throw new DBError($e->getMessage());
+        }
     }
 }

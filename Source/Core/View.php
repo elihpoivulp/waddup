@@ -60,16 +60,17 @@ class View
      */
     public function render(string $template_name, array $context = [], ?string $namespace = null)
     {
+        // NOTE: bad practice
+        if ($template_name === 'error.twig') {
+            $namespace = '';
+        }
         $template_name = $this->getTemplate($template_name, $namespace);
         try {
-            echo self::$twig->render($template_name, $context);
-        }
-        catch(LoaderError $e) {
             // when a 404 or 500 code is received, the loader fails to find
             // the /error.twig template by looking for it in whichever namespace the current view is using.
             // so catch the error and directly pass the template instead
-            echo self::$twig->render('error.twig', $context);
-        } catch (RuntimeError|SyntaxError $e) {
+            echo self::$twig->render($template_name, $context);
+        } catch (LoaderError|RuntimeError|SyntaxError $e) {
             throw new Exception($e->getMessage());
         }
     }

@@ -8,7 +8,7 @@ class Config
      * Show errors or not
      * @var bool
      */
-    public static bool $DEBUG = false;
+    public static bool $DEBUG = true;
 
     public static function DB(string $key): string
     {

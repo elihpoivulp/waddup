@@ -17,8 +17,8 @@ $(document).ready(function () {
     });
 
     $('.ui.label.with-popup').popup({
-            on: 'hover'
-        });
+        on: 'hover'
+    });
 
     // profile menu
     $('.profile-menu .item').tab();
@@ -26,7 +26,27 @@ $(document).ready(function () {
     $('.ui.upward.dropdown.item')
         .dropdown({
             direction: 'upward'
+        });
+
+    $('.ui.form')
+        .form({
+            fields: {
+                name: ['empty', 'minLength[4]', 'maxLength[70]'],
+                username: ['empty', 'minLength[4]', 'maxLength[70]'],
+                email: ['empty', 'email', 'minLength[4]', 'maxLength[70]'],
+                password: {
+                    rules: [
+                        {type: 'empty'},
+                        {type: 'minLength[4]'},
+                        {type: 'maxLength[32]'},
+                        {type: 'match[confirm-password]', prompt: 'Password match Password Confirmation field.'}
+                    ]
+                }
+            },
+            inline: true,
+            on: 'blur'
         })
     ;
+
 
 });

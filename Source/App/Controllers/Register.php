@@ -31,4 +31,8 @@ class Register extends Controller
             'title' => 'Register'
         ]);
     }
+
+    public function createAction()
+    {
+    }
 }

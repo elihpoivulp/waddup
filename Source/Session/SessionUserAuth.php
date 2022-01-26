@@ -9,7 +9,7 @@ class SessionUserAuth
     public static function login(string $token): bool
     {
         if (!self::isLoggedIn()) {
-            session_regenerate_id();  // prevent session fixation
+            session_regenerate_id(true);  // prevent session fixation
             $user_data = [
                 'token' => $token,
                 'last_login' => time()
@@ -23,6 +23,7 @@ class SessionUserAuth
     static public function logout(): bool
     {
         if (self::isLoggedIn()) {
+            Session::set('user_data', []);
             Session::unset('user_data');
         }
         return true;

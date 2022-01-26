@@ -5,13 +5,12 @@
             'segment_title': 'Register',
             'subtitle': '<p> Or <a href=" ' ~ site_url('login') ~ '" class="ui tertiary button">Login</a></p>'
         } %}
-        {{ display_form_errors() }}
         <form class="ui form" method="post" action="{{ site_url('register/store') }}" id="reg-form">
             <!--TODO: add CSRF here later-->
             <div class="fields">
                 <div class="ten wide field {{ error_bag('name') ? 'error' : '' }}">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Name"  minlength="4" maxlength="70" value="{{ form_values('name') }}">
+                    <input type="text" name="name" id="name" placeholder="Name"  minlength="4" maxlength="70" value="{{ form_values('name') }}" autofocus>
                 </div>
                 <div class="field {{ error_bag('username') ? 'error' : '' }}">
                     <label for="username">Username</label>
@@ -37,5 +36,8 @@
             </div>
             <button class="ui positive button" type="submit">Register</button>
         </form>
+        <div class="mt-4">
+            {{ display_form_errors() }}
+        </div>
     </div>
 {% endblock main %}

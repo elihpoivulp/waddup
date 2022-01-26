@@ -70,10 +70,15 @@ class View
                     echo '<div class="ui error message">';
                     echo '<ul>';
                     foreach (Session::getFormErrors() as $error) {
-                        echo "<li>{$error['message']}</li>";
+                        if (is_array($error)) {
+                            echo "<li>{$error['message']}</li>";
+                        } else {
+                            echo "<li>$error</li>";
+                        }
                     }
                     echo '</ul>';
                     echo '</div>';
+                    Session::unsetFormErrors();
                 }
             }));
 
@@ -82,7 +87,7 @@ class View
             }));
 
             // get flash from session
-            $twig->addFunction(new TwigFunction('get_flash', function (string $key): string {
+            $twig->addFunction(new TwigFunction('get_flash', function (string $key): ?string {
                 return Session::getFlash($key);
             }));
 

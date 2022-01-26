@@ -20,7 +20,7 @@ class Request
         if (isset($_GET['_url'])) {
             $this->current_path = self::filterInput(INPUT_GET, '_url');
         } else {
-            $this->current_path = $_SERVER['QUERY_STRING'] ?? $_SERVER['REQUEST_URI'];
+            $this->current_path = $_SERVER['REQUEST_URI'] ?? $_SERVER['QUERY_STRING'];
         }
     }
 

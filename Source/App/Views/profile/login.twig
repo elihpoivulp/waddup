@@ -5,15 +5,15 @@
             'segment_title': 'Login',
             'subtitle': '<p> Or <a href=" ' ~ site_url('register') ~ '" class="ui tertiary button">Register</a></p>'
         } %}
-        <form class="ui form" method="post">
+        <form class="ui form" method="post" action="{{ site_url('login/validate') }}">
             <!--TODO: add CSRF here later-->
-            <div class="field">
+            <div class="field {{ error_bag('usermail') ? 'error' : '' }}">
                 <label for="usermail">Username or Email</label>
-                <input type="text" name="usermail" id="usermail" placeholder="Username or Email" required minlength="4" maxlength="70">
+                <input type="text" name="usermail" id="usermail" placeholder="Username or Email" required minlength="4" maxlength="70" value="{{ form_values('usermail') }}">
             </div>
-            <div class="field">
+            <div class="field {{ error_bag('usermail') ? 'error' : '' }}">
                 <label for="password">Password</label>
-                <input type="text" name="password" id="password" placeholder="Password" required minlength="4" maxlength="32">
+                <input type="password" name="password" id="password" placeholder="Password" required minlength="4" maxlength="32">
             </div>
             <button class="ui positive button" type="submit">Login</button>
             <div class="mt-4">
@@ -22,5 +22,11 @@
                 </div>
             </div>
         </form>
+        <div class="mt-4">
+            {{ display_form_errors() }}
+        </div>
     </div>
 {% endblock main %}
+{% block page_specific_scripts %}
+    {% include 'components/toast.twig' with {'key': 'needs_login'} %}
+{% endblock page_specific_scripts %}

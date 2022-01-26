@@ -31,10 +31,10 @@ class Session
         }
     }
 
-    public static function unsetFlash(string $key): void
+    public static function unsetFlash(): void
     {
-        if (self::exists($key)) {
-            unset($_SESSION['_flash'][$key]);
+        if (self::exists('_flash')) {
+            unset($_SESSION['_flash']);
         }
     }
 
@@ -67,7 +67,7 @@ class Session
     {
         if (self::exists('_flash') && !empty($_SESSION['_flash'][$key])) {
             $flash = $_SESSION['_flash'][$key];
-            self::unsetFlash($key);
+            self::unsetFlash();
             return $flash;
         }
         return null;

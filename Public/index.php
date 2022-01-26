@@ -18,6 +18,9 @@ $router = new Router();
 
 $router->addRoute('');
 
+// Sandbox for testing PHP
+$router->addRoute('sandbox', ['controller' => 'Sandbox']);
+
 // login and register routes
 $router->addRoute('login', ['controller' => 'Login']);
 $router->addRoute('register', ['controller' => 'Register']);

@@ -7,6 +7,15 @@ class Config
     public const MAX_LOGIN_AGE = 60 * 60 * 24; // 1 day
 
     /**
+     * Gets the secret key for generating hashes or encryption
+     * @return string
+     */
+    public static function SECRET_KEY(): string
+    {
+        return $_ENV['SECRET_KEY'];
+    }
+
+    /**
      * Show errors or not
      * @return bool
      */

@@ -6,7 +6,7 @@ use Waddup\Exceptions\MethodNotFound;
 
 abstract class Controller
 {
-    public function __construct(protected View $view, protected Request $request)
+    public function __construct(protected array $params, protected View $view, protected Request $request)
     {
     }
 

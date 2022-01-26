@@ -6,6 +6,8 @@ use PDO;
 use Waddup\Core\Model;
 use Waddup\Exceptions\DBError;
 use Waddup\Session\Session;
+use Waddup\Session\SessionUserAuth;
+use Waddup\Utils\Token;
 
 class User extends Model
 {
@@ -21,12 +23,14 @@ class User extends Model
 
     private string $confirm_password = '';
 
-    public function __construct(array $data)
+    public function __construct(array $data = [])
     {
-        foreach ($data as $key => $value) {
-            $key = str_replace('-', '_', $key);
-            if (in_array($key, $this->fields) || property_exists($this, $key)) {
-                $this->$key = $value;
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $key = str_replace('-', '_', $key);
+                if (in_array($key, $this->fields) || property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
             }
         }
     }
@@ -34,7 +38,7 @@ class User extends Model
     /**
      * @throws DBError
      */
-    public function save(): bool
+    public function save(): bool|int
     {
         $this->validate();
 
@@ -47,8 +51,10 @@ class User extends Model
             $s->bindValue(':username', $this->username);
             $s->bindValue(':email', $this->email);
             $s->bindValue(':password', $password);
-
-            return $s->execute();
+            if ($s->execute()) {
+                self::login(self::db()->lastInsertId());
+                return true;
+            }
         }
         return false;
     }
@@ -63,7 +69,6 @@ class User extends Model
         $errors = [];
 
         $name = $this->name;
-        Session::set('_name', $name);
         if (has_length_greater_than($name, 70)) {
             $errors['name']['message'] = 'Name can\'t have more than 70 characters.';
         } else if (has_length_less_than($name, 4)) {
@@ -71,7 +76,6 @@ class User extends Model
         }
 
         $username = $this->username;
-        Session::set('_username', $username);
         if (has_length_greater_than($username, 32)) {
             $errors['username']['message'] = 'Username can\'t have more than 32 characters.';
         } else if (has_length_less_than($username, 4)) {
@@ -81,7 +85,6 @@ class User extends Model
         }
 
         $email = $this->email;
-        Session::set('_email', $email);
         if (!is_valid_email($email)) {
             $errors['email']['message'] = 'Email not valid';
         } else if (has_length_greater_than($email, 70)) {
@@ -103,19 +106,13 @@ class User extends Model
 
         if ($errors) {
             Session::set('form_values', [
-                'name' => $this->name,
-                'username' => $this->username,
-                'email' => $this->email,
+                'name' => $name,
+                'username' => $username,
+                'email' => $email,
             ]);
 
         }
 
-        foreach (array_keys($errors) as $key) {
-            if (!str_contains($key, 'password')) {
-                Session::set('form_values', [$key => $this->$key]);
-                $errors[$key]['value'] = $this->$key;
-            }
-        }
         Session::setFormErrors($errors);
         $this->errors = $errors;
     }
@@ -123,6 +120,38 @@ class User extends Model
     public function errors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * @throws DBError
+     */
+    public static function authenticate(string $email_or_username, string $password): self|bool
+    {
+        $query = 'select * from users where (username = :u or email = :e)';
+        $s = self::db()->prepare($query);
+        $s->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $s->bindValue(':u', $email_or_username);
+        $s->bindValue(':e', $email_or_username);
+        $s->execute();
+        $user = $s->fetch();
+        if ($user && $user->is_active) {
+            if (password_verify($password, $user->password)) {
+                if (!SessionUserAuth::isLoggedIn()) {
+                    self::login($user->id);
+                }
+                return $user;
+            }
+        }
+        return false;
+    }
+
+    protected static function login(int $id)
+    {
+        $t = new Token();
+        $token = $t->generateHash();
+        $s = self::db()->prepare('insert into active_logins (token, user_id) values (?, ?)');
+        $s->execute([$token, $id]);
+        SessionUserAuth::login($token);
     }
 
     /**

@@ -16,9 +16,9 @@ class Home extends Controller
     /**
      * @throws Exception
      */
-    public function __construct(View $view, Request $request)
+    public function __construct(array $params, View $view, Request $request)
     {
-        parent::__construct($view, $request);
+        parent::__construct($params, $view, $request);
         $this->view->setTemplateNamespace($this->template_namespace);
         $this->view->registerTemplatePath(VIEWS_PATH . '/' . $this->template_namespace, $this->template_namespace);
     }

@@ -23,27 +23,27 @@ class SessionUserAuth
     static public function logout(): bool
     {
         if (self::isLoggedIn()) {
-            Session::unset('user');
+            Session::unset('user_data');
         }
         return true;
     }
 
     public static function isLoggedIn(): bool
     {
-        return !is_null(self::getToken()) && Session::exists('user') && self::getToken() === Session::get('user')['token'] && self::lastLoginIsRecent();
+        return !is_null(self::getToken()) && Session::exists('user_data') && self::getToken() === Session::get('user_data')['token'] && self::lastLoginIsRecent();
     }
 
     static public function getToken(): ?string
     {
-        if (Session::exists('user')) {
-            return Session::get('user')['token'];
+        if (Session::exists('user_data')) {
+            return Session::get('user_data')['token'];
         }
         return null;
     }
 
     static private function lastLoginIsRecent(): bool
     {
-        if (!Session::exists('user') || Session::get('user')['last_login'] + Config::MAX_LOGIN_AGE < time()) {
+        if (!Session::exists('user_data') || Session::get('user_data')['last_login'] + Config::MAX_LOGIN_AGE < time()) {
             return false;
         }
         return true;

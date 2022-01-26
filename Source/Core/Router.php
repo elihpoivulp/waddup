@@ -59,7 +59,7 @@ class Router
                 $this->params['request_uri'] = $this->current_path;
 
                 // Instantiate the controller
-                $object = new $controller($view, $request);
+                $object = new $controller($this->params, $view, $request);
 
                 // If action exists in the controller, execute:
                 if (is_callable([$object, $action])) {
@@ -113,7 +113,8 @@ class Router
     protected function removeQueryString(): self
     {
         if (!empty($this->current_path)) {
-            $parts = explode('&', $this->current_path, 2);
+//            $parts = explode('&', $this->current_path, 2);
+            $parts = explode('?', $this->current_path, 2);
             $this->current_path = !str_contains($parts[0], '=') ? $parts[0] : '';
         }
         return $this;

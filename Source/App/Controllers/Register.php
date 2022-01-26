@@ -8,6 +8,7 @@ use Waddup\Core\Request;
 use Waddup\Core\Response;
 use Waddup\Core\View;
 use Waddup\Exceptions\DBError;
+use Waddup\Exceptions\PageNotFound;
 use Waddup\Models\User;
 use Waddup\Session\Session;
 
@@ -18,9 +19,9 @@ class Register extends Controller
     /**
      * @throws Exception
      */
-    public function __construct(View $view, Request $request)
+    public function __construct(array $params, View $view, Request $request)
     {
-        parent::__construct($view, $request);
+        parent::__construct($params, $view, $request);
         $this->view->setTemplateNamespace($this->template_namespace);
         $this->view->registerTemplatePath(VIEWS_PATH . '/' . $this->template_namespace, $this->template_namespace);
     }
@@ -37,7 +38,7 @@ class Register extends Controller
 
     /**
      * @throws DBError
-     * @throws \Waddup\Exceptions\PageNotFound
+     * @throws PageNotFound
      */
     public function storeAction()
     {
@@ -55,12 +56,10 @@ class Register extends Controller
                 ]);
                 Session::unsetFormErrors();
                 Session::unset('form_values');
+
                 $redirect_to = 'profile';
             } else {
                 $redirect_to = 'register';
-                foreach ($user->errors() as $key => $item) {
-                    Session::set($key, $item);
-                }
             }
         } else {
             Response::show404();

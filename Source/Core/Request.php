@@ -2,6 +2,9 @@
 
 namespace Waddup\Core;
 
+use Waddup\Exceptions\CSRFException;
+use Waddup\Utils\CSRFToken;
+
 /**
  * Handles data from the request
  */
@@ -39,8 +42,17 @@ class Request
         return $this->getMethod() === 'get';
     }
 
+    /**
+     * @throws CSRFException
+     */
     public function isPost(): bool
     {
+        if (!isset($_POST['csrf'])) {
+            throw new CSRFException('Missing CSRF token.');
+        }
+        if (CSRFToken::validate($_POST['csrf'])) {
+            throw new CSRFException('CSRF token does not match.');
+        }
         return !$this->isGet();
     }
 

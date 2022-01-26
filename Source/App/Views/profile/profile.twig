@@ -88,3 +88,6 @@
         </div>
     </div>
 {% endblock main %}
+{% block page_specific_scripts %}
+    {% include 'components/toast.twig' with {'key': 'reg_success'} %}
+{% endblock page_specific_scripts %}

@@ -88,6 +88,13 @@ class Session
         return self::get('form_errors') ?? null;
     }
 
+    public static function unsetFormErrors(): void
+    {
+        if (self::getFormErrors()) {
+            self::unset('form_errors');
+        }
+    }
+
     protected static function initFlash(): void
     {
         if (!isset($_SESSION['_flash'])) {

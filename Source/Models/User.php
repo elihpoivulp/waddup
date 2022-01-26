@@ -101,6 +101,15 @@ class User extends Model
             $errors['password']['message'] = 'Passwords do not match.';
         }
 
+        if ($errors) {
+            Session::set('form_values', [
+                'name' => $this->name,
+                'username' => $this->username,
+                'email' => $this->email,
+            ]);
+
+        }
+
         foreach (array_keys($errors) as $key) {
             if (!str_contains($key, 'password')) {
                 Session::set('form_values', [$key => $this->$key]);

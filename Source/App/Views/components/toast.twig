@@ -6,12 +6,12 @@
         $('body')
             .toast({
                 showProgress: flash_data.showProgress ?? 'top',
-                classProgress: flash_data.classProgress ?? 'success',
+                classProgress: flash_data.classProgress ?? '',
                 displayTime: flash_data.displayTime ?? 5000,
                 showIcon: flash_data.showIcon ?? 'coffee',
                 message: flash_data.message ?? `Welcome aboard, <strong>@wow</strong>`,
                 position: flash_data.position ?? 'top center',
-                class: flash_data.class ?? 'success'
+                class: flash_data.class ?? ''
             });
     });
 </script>

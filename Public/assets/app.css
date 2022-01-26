@@ -534,6 +534,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: inline-block;
 }
 
+.hidden {
+  display: none;
+}
+
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;

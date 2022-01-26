@@ -8,7 +8,9 @@ use Waddup\Core\Request;
 use Waddup\Core\Response;
 use Waddup\Core\View;
 use Waddup\Exceptions\CSRFException;
+use Waddup\Exceptions\DBError;
 use Waddup\Exceptions\PageNotFound;
+use Waddup\Models\LoggedInUser;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
 
@@ -36,6 +38,7 @@ class Profile extends LoginRequired
     /**
      * @throws PageNotFound
      * @throws CSRFException
+     * @throws DBError
      */
     public function logoutAction()
     {
@@ -46,6 +49,7 @@ class Profile extends LoginRequired
                     'message' => "You have been logged out.",
                     'class' => 'info'
                 ]);
+                LoggedInUser::logsOut(SessionUserAuth::getToken());
                 SessionUserAuth::logout();
                 Response::redirect('login');
             }

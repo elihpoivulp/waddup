@@ -5,8 +5,11 @@ namespace Waddup\App\Controllers;
 use Exception;
 use Waddup\Core\Controller;
 use Waddup\Core\Request;
+use Waddup\Core\Response;
 use Waddup\Core\View;
-use Waddup\Exceptions\ViewFileNotFound;
+use Waddup\Exceptions\DBError;
+use Waddup\Models\User;
+use Waddup\Session\Session;
 
 class Register extends Controller
 {
@@ -32,7 +35,34 @@ class Register extends Controller
         ]);
     }
 
-    public function createAction()
+    /**
+     * @throws DBError
+     * @throws \Waddup\Exceptions\PageNotFound
+     */
+    public function storeAction()
     {
+        if ($this->request->isPost()) {
+            $user = new User($this->request->getBody());
+            if ($user->save()) {
+                Session::setFlash('reg_success', [
+                    'showProgress' => 'top',
+                    'classProgress' => 'success',
+                    'displayTime' => 5000,
+                    'showIcon' => 'ship',
+                    'message' => "Welcome aboard, <strong>@$user->username</strong>",
+                    'position' => 'top center',
+                    'class' => 'success'
+                ]);
+                $redirect_to = 'profile';
+            } else {
+                $redirect_to = 'register';
+                foreach ($user->errors() as $key => $item) {
+                    Session::set($key, $item);
+                }
+            }
+        } else {
+            Response::show404();
+        }
+        Response::redirect($redirect_to);
     }
 }

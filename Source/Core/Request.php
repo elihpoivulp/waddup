@@ -29,9 +29,40 @@ class Request
         return $this->current_path;
     }
 
+    public function getMethod(): string
+    {
+        return strtolower($_SERVER['REQUEST_METHOD']);
+    }
+
+    public function isGet(): bool
+    {
+        return $this->getMethod() === 'get';
+    }
+
+    public function isPost(): bool
+    {
+        return !$this->isGet();
+    }
+
+    /**
+     * Returns filtered values
+     * @return array
+     */
+    public function getBody(): array
+    {
+        $body = [];
+        $data = $this->isGet() ? [$_GET, INPUT_GET] : [$_POST, INPUT_POST];
+        $input_type = $data[1];
+        for ($i = 0, $data_keys = array_keys($data[0]); $i < count($data_keys); $i++) {
+            $key = $data_keys[$i];
+            $body[$key] = self::filterInput($input_type, $key);
+        }
+        return $body;
+    }
+
     protected static function appRoot(): string
     {
-        return  sprintf(
+        return sprintf(
             '%s%s',
             self::getBaseURL(),
             substr($_SERVER['SCRIPT_NAME'], 0, (strpos($_SERVER['SCRIPT_NAME'], "/Public") + 1))

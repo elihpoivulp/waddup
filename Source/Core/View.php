@@ -13,6 +13,8 @@ use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 use Waddup\Session\Session;
+use Waddup\Session\SessionUserAuth;
+use Waddup\Utils\CSRFToken;
 
 class View
 {
@@ -45,6 +47,8 @@ class View
                 return Session::get($key);
             };
 
+            $twig->addFunction(new TwigFunction('is_logged_in', fn() => SessionUserAuth::isLoggedIn()));
+            $twig->addFunction(new TwigFunction('csrf', fn() => CSRFToken::generate()));
             $twig->addFunction(new TwigFunction('load_asset', $url_func));
             $twig->addFunction(new TwigFunction('site_url', $url_func));
             $twig->addFunction(new TwigFunction('session', function (string $key) use ($get_in_sess): mixed {

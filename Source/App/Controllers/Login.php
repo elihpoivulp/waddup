@@ -8,13 +8,11 @@ use Waddup\Core\DB\DBConnectionHandler;
 use Waddup\Core\Request;
 use Waddup\Core\Response;
 use Waddup\Core\View;
+use Waddup\Exceptions\CSRFException;
 use Waddup\Exceptions\DBError;
 use Waddup\Exceptions\PageNotFound;
-use Waddup\Exceptions\ViewFileNotFound;
 use Waddup\Models\User;
 use Waddup\Session\Session;
-use Waddup\Session\SessionUserAuth;
-use Waddup\Utils\Token;
 
 class Login extends Controller
 {
@@ -36,27 +34,33 @@ class Login extends Controller
     public function indexAction()
     {
         $this->view->render('login.twig', [
-            'title' => 'Login'
+            'title' => 'Login',
+            'next' => isset($_GET['next']) ? "?next={$_GET['next']}" : ''
         ]);
     }
 
     /**
      * @throws DBError
      * @throws PageNotFound
+     * @throws CSRFException
      */
     public function validateAction()
     {
         if ($this->request->isPost()) {
+            $next = $_GET['next'] ?? '';
             $data = $this->request->getBody();
             $user = User::authenticate($data['usermail'], $data['password']);
             if ($user) {
-                Response::redirect('profile');
+                Response::redirect( $next ?? 'profile');
             } else {
                 Session::set('form_values', ['usermail' => $data['usermail']]);
                 Session::setFormErrors([
                     'usermail' => ['message' => 'Login failed. Please check your username/email or password.']
                 ]);
-                Response::redirect('login');
+                if ($next) {
+                    $next = "?next=$next";
+                }
+                Response::redirect('login' . $next);
             }
         } else {
             Response::show404();

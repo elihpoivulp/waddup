@@ -5,7 +5,7 @@
             'segment_title': 'Login',
             'subtitle': '<p> Or <a href=" ' ~ site_url('register') ~ '" class="ui tertiary button">Register</a></p>'
         } %}
-        <form class="ui form" method="post" action="{{ site_url('login/validate') }}">
+        <form class="ui form" method="post" action="{{ site_url('login/validate' ~ next) }}">
             <input type="hidden" name="_csrf" value="{{ csrf() }}">
             <div class="field {{ error_bag('usermail') ? 'error' : '' }}">
                 <label for="usermail">Username or Email</label>

@@ -4,6 +4,8 @@ namespace Waddup\Config;
 
 class Config
 {
+    public const MAX_LOGIN_AGE = 60 * 60 * 24; // 1 day
+
     /**
      * Show errors or not
      * @return bool

@@ -1,31 +1,49 @@
 <div class="ui float right dropdown item">
-    <!--TODO: hamburger if not logged in-->
-    <img class="ui avatar image" src="{{ load_placeholder() }}">
-{#    <i class="hamburger icon"></i> #}
+    {% if is_logged_in() %}
+        <img class="ui avatar image" src="{{ load_placeholder() }}">
+    {% else %}
+        <i class="hamburger icon"></i>
+    {% endif %}
     <i class="dropdown icon"></i>
     <div class="menu">
-        <a href="{{ site_url('profile') }}" class="item">
-            <i class="user icon"></i>
-            {#            <em data-emoji=":frog:" class="emoji"></em> #}
-            Nicko Gamba
-        </a>
-        <a class="item" href="{{ site_url('login') }}">
-            <i class="key icon"></i>
-            {#            <em data-emoji=":wave:" class="emoji"></em> #}
-            Login
-        </a>
-        <a class="item" href="{{ site_url('register') }}">
-            <i class="signup icon"></i>
-            {#                    <em data-emoji=":no_entry:" class="emoji"></em> #}
-            {#            <em data-emoji=":white_check_mark:" class="emoji"></em> #}
-            Register
-        </a>
-        <div class="divider"></div>
-        <div class="header">Settings</div>
-        <div class="item">
-            <i class="moon icon"></i>
-            {#            <em data-emoji=":full_moon:" class="emoji"></em> #}
-            Dark mode
-        </div>
+        {% if is_logged_in() %}
+            <a href="{{ site_url('profile') }}" class="item">
+                <i class="user icon"></i>
+                {#            <em data-emoji=":frog:" class="emoji"></em> #}
+                Nicko Gamba
+            </a>
+            <a class="item" href="{{ site_url('profile/settings') }}">
+                <i class="cog icon"></i>
+                Settings
+            </a>
+            <form method="post" action="{{ site_url('logout') }}">
+                <input type="hidden" name="_csrf" value="{{ csrf() }}">
+                <a class="item" href="{{ site_url('logout') }}"
+                   onclick="event.preventDefault(); this.closest('form').submit();">
+                    <i class="sign out icon"></i>
+                    Logout
+                </a>
+            </form>
+        {% else %}
+            <a class="item" href="{{ site_url('login') }}">
+                <i class="sign in icon"></i>
+                {#            <em data-emoji=":wave:" class="emoji"></em> #}
+                Login
+            </a>
+            <a class="item" href="{{ site_url('register') }}">
+                <i class="signup icon"></i>
+                {#                    <em data-emoji=":no_entry:" class="emoji"></em> #}
+                {#            <em data-emoji=":white_check_mark:" class="emoji"></em> #}
+                Register
+            </a>
+        {% endif %}
+        <!--TODO: Maybe add darkmode -->
+        {#        <div class="divider"></div> #}
+        {#        <div class="header">Settings</div> #}
+        {#        <div class="item"> #}
+        {#            <i class="moon icon"></i> #}
+        {#            #}{#            <em data-emoji=":full_moon:" class="emoji"></em> #}
+        {#            Dark mode #}
+        {#        </div> #}
     </div>
 </div>

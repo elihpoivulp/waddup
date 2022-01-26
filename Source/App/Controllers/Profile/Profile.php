@@ -5,7 +5,12 @@ namespace Waddup\App\Controllers\Profile;
 use Exception;
 use Waddup\App\Controllers\Filters\LoginRequired;
 use Waddup\Core\Request;
+use Waddup\Core\Response;
 use Waddup\Core\View;
+use Waddup\Exceptions\CSRFException;
+use Waddup\Exceptions\PageNotFound;
+use Waddup\Session\Session;
+use Waddup\Session\SessionUserAuth;
 
 class Profile extends LoginRequired
 {
@@ -26,5 +31,25 @@ class Profile extends LoginRequired
         $this->view->render('profile.twig', [
             'title' => 'Profile'
         ]);
+    }
+
+    /**
+     * @throws PageNotFound
+     * @throws CSRFException
+     */
+    public function logoutAction()
+    {
+        if ($this->request->isPost()) {
+            if (SessionUserAuth::isLoggedIn()) {
+                Session::setFlash('log', [
+                    'showIcon' => 'exclamation circle',
+                    'message' => "You have been logged out.",
+                    'class' => 'info'
+                ]);
+                SessionUserAuth::logout();
+                Response::redirect('login');
+            }
+        }
+        Response::show404();
     }
 }

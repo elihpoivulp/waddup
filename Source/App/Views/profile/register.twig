@@ -6,7 +6,7 @@
             'subtitle': '<p> Or <a href=" ' ~ site_url('login') ~ '" class="ui tertiary button">Login</a></p>'
         } %}
         <form class="ui form" method="post" action="{{ site_url('register/store') }}" id="reg-form">
-            <input type="hidden" name="_csrf" {{ csrf() }}>
+            <input type="hidden" name="_csrf" value="{{ csrf() }}">
             <div class="fields">
                 <div class="ten wide field {{ error_bag('name') ? 'error' : '' }}">
                     <label for="name">Name</label>

@@ -28,6 +28,7 @@ $router->addRoute('register/store', ['controller' => 'Register', 'action' => 'st
 
 // profile
 $router->addRoute('profile', ['controller' => 'Profile', 'namespace' => 'Profile']);
+$router->addRoute('logout', ['controller' => 'Profile', 'action' => 'logout', 'namespace' => 'Profile']);
 
 // general route
 $router->addRoute('{controller}/{action}');

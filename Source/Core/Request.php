@@ -47,10 +47,10 @@ class Request
      */
     public function isPost(): bool
     {
-        if (!isset($_POST['csrf'])) {
+        if (!isset($_POST['_csrf'])) {
             throw new CSRFException('Missing CSRF token.');
         }
-        if (CSRFToken::validate($_POST['csrf'])) {
+        if (!CSRFToken::validate($_POST['_csrf'])) {
             throw new CSRFException('CSRF token does not match.');
         }
         return !$this->isGet();

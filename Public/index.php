@@ -21,6 +21,7 @@ $router->addRoute('');
 // login and register routes
 $router->addRoute('login', ['controller' => 'Login']);
 $router->addRoute('register', ['controller' => 'Register']);
+$router->addRoute('register/store', ['controller' => 'Register', 'action' => 'store']);
 
 // profile
 $router->addRoute('profile', ['controller' => 'Profile', 'namespace' => 'Profile']);

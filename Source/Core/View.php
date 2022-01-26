@@ -58,6 +58,13 @@ class View
             $twig->addFunction(new TwigFunction('error_bag', function (string $key): bool {
                 return Session::inErrorBag($key);
             }));
+            $twig->addFunction(new TwigFunction('form_values', function (string $key): string|int|null {
+                $val = null;
+                if (Session::exists('form_values')) {
+                    $val = Session::get('form_values')[$key] ?? null;
+                }
+                return $val;
+            }));
             $twig->addFunction(new TwigFunction('display_form_errors', function (): void {
                 if (Session::getFormErrors()) {
                     echo '<div class="ui error message">';

@@ -11,17 +11,17 @@
             <div class="fields">
                 <div class="ten wide field {{ error_bag('name') ? 'error' : '' }}">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Name"  minlength="4" maxlength="70" value="{{ session('_name') }}">
+                    <input type="text" name="name" id="name" placeholder="Name"  minlength="4" maxlength="70" value="{{ form_values('name') }}">
                 </div>
                 <div class="field {{ error_bag('username') ? 'error' : '' }}">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" placeholder="Username"  minlength="4"
-                           maxlength="32" value="{{ session('_username') }}">
+                           maxlength="32" value="{{ form_values('username') }}">
                 </div>
             </div>
             <div class="field {{ error_bag('email') ? 'error' : '' }}">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email"  minlength="4" maxlength="70" value="{{ session('_email') }}">
+                <input type="email" name="email" id="email" placeholder="Email"  minlength="4" maxlength="70" value="{{ form_values('email') }}">
             </div>
             <div class="fields">
                 <div class="eight wide field {{ error_bag('password') ? 'error' : '' }}">

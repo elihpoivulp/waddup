@@ -53,6 +53,8 @@ class Register extends Controller
                     'position' => 'top center',
                     'class' => 'success'
                 ]);
+                Session::unsetFormErrors();
+                Session::unset('form_values');
                 $redirect_to = 'profile';
             } else {
                 $redirect_to = 'register';

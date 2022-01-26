@@ -12,6 +12,7 @@ use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
+use Waddup\Session\Session;
 
 class View
 {
@@ -40,10 +41,42 @@ class View
                 return trim_slashes(Request::getSiteURL() . $uri);
             };
 
+            $get_in_sess = function (string $key): mixed {
+                return Session::get($key);
+            };
+
             $twig->addFunction(new TwigFunction('load_asset', $url_func));
             $twig->addFunction(new TwigFunction('site_url', $url_func));
+            $twig->addFunction(new TwigFunction('session', function (string $key) use ($get_in_sess): mixed {
+                return $get_in_sess($key);
+            }));
+            $twig->addFunction(new TwigFunction('get_in_session_delete', function (string $key) use ($get_in_sess): mixed {
+                $data = $get_in_sess($key);
+                Session::unset($key);
+                return $data;
+            }));
+            $twig->addFunction(new TwigFunction('error_bag', function (string $key): bool {
+                return Session::inErrorBag($key);
+            }));
+            $twig->addFunction(new TwigFunction('display_form_errors', function (): void {
+                if (Session::getFormErrors()) {
+                    echo '<div class="ui error message">';
+                    echo '<ul>';
+                    foreach (Session::getFormErrors() as $error) {
+                        echo "<li>{$error['message']}</li>";
+                    }
+                    echo '</ul>';
+                    echo '</div>';
+                }
+            }));
+
             $twig->addFunction(new TwigFunction('load_placeholder', function (string $folder = 'images/placeholders/avatar/large', string $file = 'ade.jpg') use ($url_func): string {
                 return $url_func("assets/$folder/$file");
+            }));
+
+            // get flash from session
+            $twig->addFunction(new TwigFunction('get_flash', function (string $key): string {
+                return Session::getFlash($key);
             }));
 
             self::$twig = $twig;

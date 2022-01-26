@@ -28,7 +28,7 @@ $(document).ready(function () {
             direction: 'upward'
         });
 
-    $('.ui.form')
+    $('.ui.form#reg-form')
         .form({
             fields: {
                 name: ['empty', 'minLength[4]', 'maxLength[70]'],
@@ -47,6 +47,4 @@ $(document).ready(function () {
             on: 'blur'
         })
     ;
-
-
 });

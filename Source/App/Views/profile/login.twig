@@ -6,7 +6,7 @@
             'subtitle': '<p> Or <a href=" ' ~ site_url('register') ~ '" class="ui tertiary button">Register</a></p>'
         } %}
         <form class="ui form" method="post" action="{{ site_url('login/validate') }}">
-            <!--TODO: add CSRF here later-->
+            <input type="hidden" name="_csrf" {{ csrf() }}>
             <div class="field {{ error_bag('usermail') ? 'error' : '' }}">
                 <label for="usermail">Username or Email</label>
                 <input type="text" name="usermail" id="usermail" placeholder="Username or Email" required minlength="4" maxlength="70" value="{{ form_values('usermail') }}">
@@ -28,5 +28,5 @@
     </div>
 {% endblock main %}
 {% block page_specific_scripts %}
-    {% include 'components/toast.twig' with {'key': 'needs_login'} %}
+    {% include 'components/toast.twig' with {'key': 'log'} %}
 {% endblock page_specific_scripts %}

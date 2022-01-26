@@ -12,12 +12,12 @@ class Token
     /**
      * @throws Exception
      */
-    public function __construct(?string $token = null)
+    public function __construct(?string $token = null, int $bytes = 16)
     {
         if (!is_null($token)) {
             $this->token = $token;
         } else {
-            $this->token = bin2hex(random_bytes(16));
+            $this->token = bin2hex(random_bytes($bytes));
         }
     }
 

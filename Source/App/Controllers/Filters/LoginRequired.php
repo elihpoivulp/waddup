@@ -15,7 +15,7 @@ class LoginRequired extends Controller
     protected function before()
     {
         if (!SessionUserAuth::isLoggedIn()) {
-            Session::setFlash('needs_login', [
+            Session::setFlash('log', [
                 'showIcon' => 'exclamation circle',
                 'message' => "You must login first.",
                 'class' => 'info'

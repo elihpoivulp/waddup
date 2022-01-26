@@ -10,7 +10,7 @@ use Waddup\Models\User;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
 
-class LoginRequired extends Controller
+abstract class LoginRequired extends Controller
 {
     protected User $user;
 

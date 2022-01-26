@@ -5,30 +5,34 @@
             'segment_title': 'Register',
             'subtitle': '<p> Or <a href=" ' ~ site_url('login') ~ '" class="ui tertiary button">Login</a></p>'
         } %}
-        <form class="ui form" method="post">
+        {{ display_form_errors() }}
+        <form class="ui form" method="post" action="{{ site_url('register/store') }}" id="reg-form">
             <!--TODO: add CSRF here later-->
             <div class="fields">
-                <div class="ten wide field">
+                <div class="ten wide field {{ error_bag('name') ? 'error' : '' }}">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Name" required minlength="4" maxlength="70">
+                    <input type="text" name="name" id="name" placeholder="Name"  minlength="4" maxlength="70" value="{{ session('_name') }}">
                 </div>
-                <div class="field">
+                <div class="field {{ error_bag('username') ? 'error' : '' }}">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Username" required minlength="4" maxlength="32">
+                    <input type="text" name="username" id="username" placeholder="Username"  minlength="4"
+                           maxlength="32" value="{{ session('_username') }}">
                 </div>
             </div>
-            <div class="field">
+            <div class="field {{ error_bag('email') ? 'error' : '' }}">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" placeholder="Email" required minlength="4" maxlength="70">
+                <input type="email" name="email" id="email" placeholder="Email"  minlength="4" maxlength="70" value="{{ session('_email') }}">
             </div>
             <div class="fields">
-                <div class="eight wide field">
+                <div class="eight wide field {{ error_bag('password') ? 'error' : '' }}">
                     <label for="password">Password</label>
-                    <input type="text" name="password" id="password" placeholder="Password" required minlength="4" maxlength="32">
+                    <input type="password" name="password" id="password" placeholder="Password"  minlength="4"
+                           maxlength="32">
                 </div>
-                <div class="eight wide field">
+                <div class="eight wide field {{ error_bag('password') ? 'error' : '' }}">
                     <label for="confirm-password">Confirm Password</label>
-                    <input type="text" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required minlength="4" maxlength="32">
+                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password"
+                            minlength="4" maxlength="32">
                 </div>
             </div>
             <button class="ui positive button" type="submit">Register</button>

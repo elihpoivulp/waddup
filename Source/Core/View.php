@@ -48,7 +48,7 @@ class View
             };
 
             $twig->addFunction(new TwigFunction('is_logged_in', fn() => SessionUserAuth::isLoggedIn()));
-            $twig->addFunction(new TwigFunction('csrf', fn() => CSRFToken::generate()));
+            $twig->addFunction(new TwigFunction('csrf', fn() => '<input name="csrf" type="hidden" value=" ' . CSRFToken::generate() . '">'));
             $twig->addFunction(new TwigFunction('load_asset', $url_func));
             $twig->addFunction(new TwigFunction('site_url', $url_func));
             $twig->addFunction(new TwigFunction('session', function (string $key) use ($get_in_sess): mixed {

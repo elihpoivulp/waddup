@@ -20,10 +20,10 @@ class Request
     {
         // $_SERVER['QUERY_STRING'] and $_GET['_url'] are ignored when the server
         // is served using PHP's built-in web server.
-        if (isset($_GET['_url'])) {
-            $this->current_path = self::filterInput(INPUT_GET, '_url');
+        if(isset($_GET['_url'])){
+            $this->current_path = $this->filterInput(INPUT_GET, '_url');
         } else {
-            $this->current_path = $_SERVER['REQUEST_URI'] ?? $_SERVER['QUERY_STRING'];
+            $this->current_path = $_SERVER['QUERY_STRING'] ?? $_SERVER['REQUEST_URI'];
         }
     }
 
@@ -88,7 +88,7 @@ class Request
      * @param int $default_filter
      * @return string
      */
-    public static function filterInput(int $type, string $key, int $default_filter = FILTER_SANITIZE_FULL_SPECIAL_CHARS): string
+    protected function filterInput(int $type, string $key, int $default_filter = FILTER_SANITIZE_FULL_SPECIAL_CHARS): string
     {
         return filter_input($type, $key, $default_filter);
     }

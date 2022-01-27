@@ -23,7 +23,11 @@ class Request
         if(isset($_GET['_url'])){
             $this->current_path = $this->filterInput(INPUT_GET, '_url');
         } else {
-            $this->current_path = $_SERVER['REQUEST_URI'] ?? $_SERVER['QUERY_STRING'];
+            if (isset($_SERVER['QUERY_STRING']) && str_contains($_SERVER['QUERY_STRING'], '_url')) {
+                $this->current_path = $_SERVER['QUERY_STRING'];
+            } else {
+                $this->current_path = $_SERVER['REQUEST_URI'];
+            }
         }
     }
 
@@ -72,13 +76,9 @@ class Request
         return $body;
     }
 
-    protected static function appRoot(): string
+    protected static function getHost(): string
     {
-        return sprintf(
-            '%s%s',
-            self::getBaseURL(),
-            substr($_SERVER['SCRIPT_NAME'], 0, (strpos($_SERVER['SCRIPT_NAME'], "/Public") + 1))
-        );
+        return sprintf('%s%s', self::getProtocol(), $_SERVER['HTTP_HOST']);
     }
 
     /**
@@ -95,16 +95,15 @@ class Request
 
     public static function getBaseURL(): string
     {
-        return sprintf('%s%s', self::getProtocol(), $_SERVER['HTTP_HOST']);
+        return sprintf(
+            '%s%s',
+            self::getHost(),
+            substr($_SERVER['SCRIPT_NAME'], 0, (strpos($_SERVER['SCRIPT_NAME'], "/Public") + 1))
+        );
     }
 
     public static function getProtocol(): string
     {
         return 'http' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 's' : '') . '://';
-    }
-
-    public static function getSiteURL(): string
-    {
-        return self::appRoot();
     }
 }

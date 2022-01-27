@@ -40,7 +40,7 @@ class View
             $twig->addGlobal('app', 'Waddup'); // TODO: pull from .env
 
             $url_func = function (string $uri = ''): string {
-                return trim_slashes(Request::getSiteURL() . $uri);
+                return trim_slashes(Request::getBaseURL() . $uri);
             };
 
             $get_in_sess = function (string $key): mixed {

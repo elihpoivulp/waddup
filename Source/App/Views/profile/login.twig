@@ -15,6 +15,12 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Password" required minlength="4" maxlength="32">
             </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input name="remember" id="remember" type="checkbox" tabindex="0" class="hidden" {{ form_values('remember') ? 'checked' : '' }}>
+                    <label for="remember">Remember be</label>
+                </div>
+            </div>
             <button class="ui positive button" type="submit">Login</button>
             <div class="mt-4">
                 <div class="field">

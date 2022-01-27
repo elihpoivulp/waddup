@@ -23,6 +23,18 @@ class User extends Model
 
     private string $confirm_password = '';
 
+    /**
+     * The expiry time for remember the login
+     * @var int|float
+     */
+    public int|float $exp_time;
+
+    /**
+     * The token for authenticating the remember cookie
+     * @var string
+     */
+    public string $token;
+
     public function __construct(array $data = [])
     {
         if ($data) {
@@ -145,6 +157,9 @@ class User extends Model
         return false;
     }
 
+    /**
+     * @throws DBError
+     */
     protected static function login(int $id)
     {
         $t = new Token();
@@ -152,6 +167,23 @@ class User extends Model
         $s = self::db()->prepare('insert into active_logins (token, user_id) values (?, ?)');
         $s->execute([$token, $id]);
         SessionUserAuth::login($token);
+    }
+
+    /**
+     * @throws DBError
+     */
+    public function rememberLogin(): bool
+    {
+        $token = new Token();
+        $hash = $token->generateHash();
+        $exp_time = time() + 60 * 60 * 24 * 30; // 30 days
+
+        $this->exp_time = $exp_time;
+        $this->token = $token->getToken();
+
+        $sql = 'insert into remembered_logins (token_hash, user_id, expires_at) values (:hash, :id, :exp)';
+        $s = self::db()->prepare($sql);
+        return $s->execute([':hash' => $hash, ':id' => $this->id, ':exp' => date('Y-m-d H:i:s', $exp_time)]);
     }
 
     /**

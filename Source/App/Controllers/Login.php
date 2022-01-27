@@ -51,11 +51,21 @@ class Login extends Controller
             $data = $this->request->getBody();
             $user = User::authenticate($data['usermail'], $data['password']);
             if ($user) {
-                Response::redirect( $next ?? 'profile');
+                if ($data['remember']) {
+                    if ($user->rememberLogin()) {
+                        setcookie('remember', $user->token, $user->exp_time, '/');
+                    }
+                }
+                Session::unsetFormErrors();
+                Session::unset('form_values');
+                Response::redirect($next ?? 'profile');
             } else {
-                Session::set('form_values', ['usermail' => $data['usermail']]);
+                Session::set('form_values', [
+                    'usermail' => $data['usermail'],
+                    'remember' => $data['remember'] ?? false
+                ]);
                 Session::setFormErrors([
-                    'usermail' => ['message' => 'Login failed. Please check your username/email or password.']
+                    'usermail' => ['message' => 'Login failed. Please check your username/email or password.'],
                 ]);
                 if ($next) {
                     $next = "?next=$next";

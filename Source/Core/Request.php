@@ -23,7 +23,7 @@ class Request
         if(isset($_GET['_url'])){
             $this->current_path = $this->filterInput(INPUT_GET, '_url');
         } else {
-            if (isset($_SERVER['QUERY_STRING']) && str_contains($_SERVER['QUERY_STRING'], '_url')) {
+            if (isset($_SERVER['QUERY_STRING']) && !str_contains($_SERVER['QUERY_STRING'], '_url')) {
                 $this->current_path = $_SERVER['QUERY_STRING'];
             } else {
                 $this->current_path = $_SERVER['REQUEST_URI'];

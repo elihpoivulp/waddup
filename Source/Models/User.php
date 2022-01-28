@@ -2,6 +2,7 @@
 
 namespace Waddup\Models;
 
+use Exception;
 use PDO;
 use Waddup\Core\Model;
 use Waddup\Exceptions\DBError;
@@ -121,7 +122,7 @@ class User extends Model
      */
     public static function findOne(int $id): bool|self
     {
-        $sql = 'select username, email from users where id = :id';
+        $sql = 'select * from users where id = :id';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, User::class);
         $s->execute([':id' => $id]);
@@ -147,6 +148,22 @@ class User extends Model
                 }
                 return $user;
             }
+        }
+        return false;
+    }
+
+    /**
+     * @throws Exception
+     * @throws DBError
+     */
+    public static function loginFromCookie(): self|bool
+    {
+        $token = new Token($_COOKIE['remember']);
+        $token = $token->generateHash();
+        $remembered = RememberedLogins::findOne($token);
+        if (!$remembered->hasExpired()) {
+            self::login($remembered->user_id);
+            return self::findOne($remembered->user_id);
         }
         return false;
     }

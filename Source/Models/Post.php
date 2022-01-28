@@ -19,6 +19,7 @@ class Post extends Model
     public static function getAll(): bool|array
     {
         $s = self::db()->prepare('select * from posts order by id desc');
+        $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->execute();
         return $s->fetchAll();
     }

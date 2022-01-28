@@ -32,4 +32,18 @@ class LoggedInUser extends Model
         $s = self::db()->prepare($sql);
         return $s->execute([':token' => $token]);
     }
+
+    /**
+     * @throws DBError
+     */
+    public static function forgetLogin()
+    {
+        $cookie = $_COOKIE['remember'] ?? false;
+        if ($cookie) {
+            if ($remembered = RememberedLogins::findOne($cookie)) {
+                $remembered->delete();
+            }
+            setcookie('remember', '', time() - 3600);
+        }
+    }
 }

@@ -5,6 +5,7 @@ namespace Waddup\Core;
 use Exception;
 
 //use Waddup\Exceptions\ViewFileNotFound;
+use http\Client\Curl\User;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -13,6 +14,7 @@ use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 use Waddup\Models\LoggedInUser;
+use Waddup\Models\User as UserModel;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
 use Waddup\Utils\CSRFToken;
@@ -29,6 +31,9 @@ class View
     static protected ?Environment $twig = null;
     static protected ?FilesystemLoader $loader = null;
 
+    /**
+     * @throws \Waddup\Exceptions\DBError
+     */
     public function __construct()
     {
         if (is_null(self::$twig)) {
@@ -40,7 +45,15 @@ class View
 
             $twig->addExtension(new DebugExtension());
             $twig->addGlobal('app', $_ENV['APP_NAME'] ?? 'Waddup');
-            $twig->addGlobal('user', LoggedInUser::getLoggedInUser(SessionUserAuth::getToken()));
+            $user = false;
+            if (SessionUserAuth::isLoggedIn()) {
+                $user = LoggedInUser::getLoggedInUser(SessionUserAuth::getToken());
+            } else {
+                if (isset($_COOKIE['remember'])) {
+                    $user = UserModel::loginFromCookie();
+                }
+            }
+            $twig->addGlobal('user', $user);
 
             $url_func = function (string $uri = ''): string {
                 return trim_slashes(Request::getBaseURL() . $uri);
@@ -62,6 +75,18 @@ class View
                 return get_time_ago(strtotime($date));
             }));
 //            $twig->addFunction(new TwigFunction('post_body', fn($c) => htmlspecialchars_decode(stripslashes($c))));
+            $twig->addFunction(new TwigFunction('substr', function (string $string, int $start, int $end, string $cut_indicator = '...') {
+                $string_count = strlen($string);
+                $cut = substr($string, $start, $end);
+                $cut_count = strlen($cut);
+                $str = '';
+                if ($string_count <= $end) {
+                    $str = $string;
+                } else {
+                    $str = $cut . '...';
+                }
+                return $str;
+            }));
             $twig->addFunction(new TwigFunction('get_in_session_delete', function (string $key) use ($get_in_sess): mixed {
                 $data = $get_in_sess($key);
                 Session::unset($key);

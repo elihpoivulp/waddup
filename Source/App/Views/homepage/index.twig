@@ -9,12 +9,16 @@
                 <a href="{{ site_url('posts/' ~ post.id) }}">
                     <article class="ui container featured-content">
                         {#                        {% include 'components/segment-header.twig' with {'segment_title': post.title} %}#}
-                        <small class="text-gray-500">{{ post.date_created|date('F j, o') }}</small>
+                        <small class="text-gray-500">
+                            <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
+                        </small>
                         <div class="py-8 mb-4 description post-content">
-                            {{ post.body }}
+                            {% autoescape false %}
+                                {{ substr(post.body, 0, 250)|replace({'\n': '<br>'}) }}
+                            {% endautoescape %}
                         </div>
                         <div class="mt-4 featured-footer extra">
-                            <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
+                            <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @{{ post.author.username }}
                         </div>
                         <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
                              data-position="top center">

@@ -19,7 +19,13 @@ abstract class LoginRequired extends Controller
      */
     protected function before()
     {
-        if (!SessionUserAuth::isLoggedIn()) {
+        $user = false;
+        if (SessionUserAuth::isLoggedIn()) {
+            $user = LoggedInUser::getLoggedInUser(SessionUserAuth::getToken());
+        } else if (isset($_COOKIE['remember'])) {
+            $user = User::loginFromCookie();
+        }
+        if (!$user) {
             Session::setFlash('log', [
                 'showIcon' => 'exclamation circle',
                 'message' => "You must login first.",
@@ -30,9 +36,7 @@ abstract class LoginRequired extends Controller
                 $next = '?next=' . urlencode($uri);
             }
             Response::redirect('login' . $next);
-        } else {
-            $this->user = LoggedInUser::getLoggedInUser(SessionUserAuth::getToken());
-            return true;
         }
+        return true;
     }
 }

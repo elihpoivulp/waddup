@@ -14,6 +14,8 @@ use Waddup\Exceptions\DBError;
 use Waddup\Exceptions\PageNotFound;
 use Waddup\Models\User;
 use Waddup\Session\Session;
+use Waddup\Session\SessionUserAuth;
+use Waddup\Utils\Token;
 
 class Login extends GuestOnly
 {
@@ -44,6 +46,7 @@ class Login extends GuestOnly
      * @throws DBError
      * @throws PageNotFound
      * @throws CSRFException
+     * @throws Exception
      */
     public function validateAction()
     {

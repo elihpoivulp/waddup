@@ -1,2 +1,5 @@
-update read me to add php version
-update installation section of read me
+[] update read me to add php version
+[] update installation section of read me
+[] add a:
+    - new last_activity column in active_logins that updates every user does an activity
+    - create an event that runs every 2 mins: if the user's last activity is past 2 mins ago, update logout column

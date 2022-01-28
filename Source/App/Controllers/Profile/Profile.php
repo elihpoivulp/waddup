@@ -47,6 +47,7 @@ class Profile extends LoginRequired
         if ($this->request->isPost()) {
             if (SessionUserAuth::isLoggedIn()) {
                 LoggedInUser::logsOut(SessionUserAuth::getToken());
+                LoggedInUser::forgetLogin();
                 SessionUserAuth::logout();
                 Response::redirect('login');
             }

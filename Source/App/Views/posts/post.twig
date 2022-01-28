@@ -1,6 +1,6 @@
 {% extends 'posts/base.twig' %}
 {% block post_meta %}
-    {% include 'includes/post-meta.twig' with {'description': post.description } %}
+    {% include 'includes/post-meta.twig' with { 'description': post.description, 'author': post.author.name } %}
 {% endblock post_meta %}
 {% block main %}
     <div>
@@ -11,7 +11,9 @@
                         <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
                     </small>
                     <div class="py-8 mb-4 description post-content">
-                        {{ post.body }}
+                        {% autoescape false %}
+                            {{ post.body|replace({'\n': '<br>'}) }}
+                        {% endautoescape %}
                     </div>
                     <div class="mt-4 featured-footer extra">
                         <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @{{ post.author.username }}

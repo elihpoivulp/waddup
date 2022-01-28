@@ -53,28 +53,4 @@ class Profile extends LoginRequired
         }
         Response::show404();
     }
-
-    /**
-     * @throws PageNotFound
-     * @throws DBError
-     * @throws Exception
-     */
-    public function postAction()
-    {
-        try {
-            if ($this->request->isPost()) {
-                $post = new Post($this->request->getBody());
-                if ($post->save()) {
-                    $data = [
-                        'new_csrf' => CSRFToken::generate(),
-                    ];
-                    echo json_encode($data);
-                } else {
-                    echo json_encode($post->errors());
-                }
-            }
-        } catch (CSRFException) {
-            Response::show404();
-        }
-    }
 }

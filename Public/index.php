@@ -29,7 +29,9 @@ $router->addRoute('register/store', ['controller' => 'Register', 'action' => 'st
 
 // profile
 $router->addRoute('profile', ['controller' => 'Profile', 'namespace' => 'Profile']);
-$router->addRoute('profile/{action}', ['controller' => 'Profile', 'namespace' => 'Profile']);
+
+// posts
+$router->addRoute('post/{action}', ['controller' => 'Posts', 'namespace' => 'Profile']);
 
 // general route
 // only works if the controller is not inside a subfolder or namespace

@@ -39,7 +39,7 @@
             if (form.form('is valid') && quill.getLength() > 0) {
                 $.ajax({
                     type: "POST",
-                    url: "{{ site_url('profile/post') }}",
+                    url: "{{ site_url('posts/store') }}",
                     data: {
                         _csrf: csrf.val(),
                         description: description.val(),

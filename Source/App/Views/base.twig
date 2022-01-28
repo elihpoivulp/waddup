@@ -12,21 +12,8 @@
     {% endblock page_specific_styles %}
 </head>
 <body>
-<div class="ui main text container">
-    <div class="ui header">
-        <img class="logo" src="{{ load_asset('assets/images/waddup.svg') }}" alt="Waddup logo">
-    </div>
-</div>
-<div class="ui borderless main menu">
-    <div class="ui text container">
-        <div class="ui large header item">
-            <h1>
-                <a href="{{ site_url() }}">{{ app|capitalize }}</a>
-            </h1>
-        </div>
-        {% include 'includes/dropdown-menu.twig' %}
-    </div>
-</div>
+{% include 'includes/logo-header.twig' %}
+{% include 'includes/main-menu.twig' %}
 <main class="ui text container mb-32">
     {% block main %}
     {% endblock main %}

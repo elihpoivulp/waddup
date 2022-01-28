@@ -163,7 +163,7 @@ class User extends Model
         $this->exp_time = $exp_time;
         $this->token = $token->getToken();
 
-        $sql = 'insert into remembered_logins (token_hash, user_id, expires_at) values (:hash, :id, :exp)';
+        $sql = 'insert into remembered_logins (token, user_id, expiry_date) values (:hash, :id, :exp)';
         $s = self::db()->prepare($sql);
         return $s->execute([':hash' => $hash, ':id' => $this->id, ':exp' => date('Y-m-d H:i:s', $exp_time)]);
     }

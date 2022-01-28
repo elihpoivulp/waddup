@@ -15,13 +15,12 @@ class User extends Model
      * Error bag. Contains errors found in validate function
      * @var array
      */
-    protected array $errors = [];
 
     protected array $fields = [
         'name', 'username', 'password', 'email'
     ];
 
-    private string $confirm_password = '';
+    protected string $confirm_password = '';
 
     /**
      * The expiry time for remember the login
@@ -34,18 +33,6 @@ class User extends Model
      * @var string
      */
     public string $token;
-
-    public function __construct(array $data = [])
-    {
-        if ($data) {
-            foreach ($data as $key => $value) {
-                $key = str_replace('-', '_', $key);
-                if (in_array($key, $this->fields) || property_exists($this, $key)) {
-                    $this->$key = $value;
-                }
-            }
-        }
-    }
 
     /**
      * @throws DBError
@@ -129,11 +116,6 @@ class User extends Model
         $this->errors = $errors;
     }
 
-    public function errors(): array
-    {
-        return $this->errors;
-    }
-
     /**
      * @throws DBError
      */
@@ -146,7 +128,7 @@ class User extends Model
         $s->bindValue(':e', $email_or_username);
         $s->execute();
         $user = $s->fetch();
-        if ($user && $user->is_active) {
+        if ($user) {
             if (password_verify($password, $user->password)) {
                 if (!SessionUserAuth::isLoggedIn()) {
                     self::login($user->id);

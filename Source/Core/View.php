@@ -12,6 +12,7 @@ use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
+use Waddup\Models\LoggedInUser;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
 use Waddup\Utils\CSRFToken;
@@ -36,8 +37,10 @@ class View
                 'debug' => true,
                 'strict_variables' => true
             ]);
+
             $twig->addExtension(new DebugExtension());
-            $twig->addGlobal('app', 'Waddup'); // TODO: pull from .env
+            $twig->addGlobal('app', $_ENV['APP_NAME'] ?? 'Waddup');
+            $twig->addGlobal('user', LoggedInUser::getLoggedInUser(SessionUserAuth::getToken()));
 
             $url_func = function (string $uri = ''): string {
                 return trim_slashes(Request::getBaseURL() . $uri);
@@ -47,6 +50,7 @@ class View
                 return Session::get($key);
             };
 
+
             $twig->addFunction(new TwigFunction('is_logged_in', fn() => SessionUserAuth::isLoggedIn()));
             $twig->addFunction(new TwigFunction('csrf', fn() => CSRFToken::generate()));
             $twig->addFunction(new TwigFunction('load_asset', $url_func));
@@ -54,6 +58,7 @@ class View
             $twig->addFunction(new TwigFunction('session', function (string $key) use ($get_in_sess): mixed {
                 return $get_in_sess($key);
             }));
+            $twig->addFunction(new TwigFunction('post_body', fn($c) => htmlspecialchars_decode(stripslashes($c))));
             $twig->addFunction(new TwigFunction('get_in_session_delete', function (string $key) use ($get_in_sess): mixed {
                 $data = $get_in_sess($key);
                 Session::unset($key);

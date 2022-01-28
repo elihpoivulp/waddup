@@ -8,6 +8,8 @@
     {% endblock post_meta %}
     <title>{% block title %} {{ app ~ ' | ' ~ title ?? app }} {% endblock title %}</title>
     {% include 'includes/stylesheets.twig' %}
+    {% block page_specific_styles %}
+    {% endblock page_specific_styles %}
 </head>
 <body>
 <div class="ui main text container">

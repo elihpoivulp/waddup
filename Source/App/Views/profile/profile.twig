@@ -26,68 +26,108 @@
             </div>
         </div>
         <div class="ui text menu profile-menu">
-            {#                    <div class="header item">Sort By</div> #}
-            <a class="item active tab-item" data-tab="active-posts">
-                Closest
+            <a class="item active tab-item" data-tab="home">
+                Home
             </a>
-            <a class="item tab-item" data-tab="xxx">
-                New Posts
-            </a>
-            <a class="item tab-item" data-tab="archive">
-                Archive
-            </a>
+{#            <a class="item tab-item" data-tab="xxx">#}
+{#                New Posts#}
+{#            </a>#}
+{#            <a class="item tab-item" data-tab="archive">#}
+{#                Archive#}
+{#            </a>#}
         </div>
-        <div class="ui bottom attached tab active" data-tab="active-posts">
-            <div>
-                <div class="ui very padded top attached segment single-post">
-                    <a href="javascript:void(0);">
-                        <article class="ui container featured-content">
-                            {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}
-                            <div class="py-4 mb-4 description featured-description">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid
-                                    consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum
-                                    provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?
-                                </p>
+        <div class="ui bottom attached active tab" data-tab="home">
+            <form class="ui form" id="new_post_form">
+                <input type="hidden" name="_csrf" value="{{ csrf() }}">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <div class="ui raised segments">
+                    <div class="ui very padded segment">
+                        {% include 'components/segment-header.twig' with {'segment_title': 'Compose'} %}
+                        <div class="field">
+                            <div id="editor"></div>
+                        </div>
+                    </div>
+                    <div class="ui very padded segment">
+                        <div class="field">
+                            <div class="ui transparent input">
+                                <input type="text" name="description" placeholder="Add a short description" required>
                             </div>
-                            <div class="mt-4 featured-footer extra">
-                                <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
+                        </div>
+                        <br>
+                        <div class="ui right aligned container">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="archive" id="archive">
+                                <label for="archive">Archive Post</label>
                             </div>
-                            <div class="ui top right attached teal label with-popup" data-title="Comments"
-                                 data-content="23"
-                                 data-position="top center">
-                                <i class="comments icon"></i> 23
-                            </div>
-                        </article>
-                    </a>
-                </div>
-                <div class="ui bottom attached menu">
-                    <div class="ui upward dropdown left floated item">
-                        <i class="settings icon"></i>
-                        <div class="menu">
-                            <div class="item">
-                                <i class="dropdown icon"></i>
-                                <span class="text">New</span>
-                                <div class="menu">
-                                    <div class="item">Document</div>
-                                    <div class="item">Image</div>
-                                </div>
-                            </div>
-                            <div class="item">Save As...</div>
-                            <div class="item">Edit</div>
+                            <br>
+                            <small>
+                                <span class="ui grey text">
+                                    Posts are only visible for 24 hours. Archive your post so it will be saved after expiry.
+                                </span>
+                            </small>
+                        </div>
+                        <br>
+                        <div class="ui right aligned container">
+                            <button class="ui button" type="button" id="post_btn">Post</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+            <!--
+{#            <div>#}
+{#                <div class="ui very padded top attached segment single-post">#}
+{#                    <a href="javascript:void(0);">#}
+{#                        <article class="ui container featured-content">#}
+{#                            {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}#}
+{#                            <div class="py-4 mb-4 description featured-description">#}
+{#                                <p>#}
+{#                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid#}
+{#                                    consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum#}
+{#                                    provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?#}
+{#                                </p>#}
+{#                            </div>#}
+{#                            <div class="mt-4 featured-footer extra">#}
+{#                                <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah#}
+{#                            </div>#}
+{#                            <div class="ui top right attached teal label with-popup" data-title="Comments"#}
+{#                                 data-content="23"#}
+{#                                 data-position="top center">#}
+{#                                <i class="comments icon"></i> 23#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="ui bottom attached menu">#}
+{#                    <div class="ui upward dropdown left floated item">#}
+{#                        <i class="settings icon"></i>#}
+{#                        <div class="menu">#}
+{#                            <div class="item">#}
+{#                                <i class="dropdown icon"></i>#}
+{#                                <span class="text">New</span>#}
+{#                                <div class="menu">#}
+{#                                    <div class="item">Document</div>#}
+{#                                    <div class="item">Image</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="item">Save As...</div>#}
+{#                            <div class="item">Edit</div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+-->
         </div>
         <div class="ui bottom attached tab" data-tab="xxx">
-            New Posts
         </div>
         <div class="ui bottom attached tab" data-tab="archive">
             archive
         </div>
     </div>
 {% endblock main %}
+{% block page_specific_styles %}
+    <link rel="stylesheet" href="{{ load_asset('assets/vendor/quill/quill.bubble.css') }}">
+{% endblock page_specific_styles %}
 {% block page_specific_scripts %}
     {% include 'components/toast.twig' with {'key': 'reg_success'} %}
+    {% include 'components/quill.twig' %}
 {% endblock page_specific_scripts %}

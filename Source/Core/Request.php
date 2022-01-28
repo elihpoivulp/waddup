@@ -18,12 +18,10 @@ class Request
 
     public function __construct()
     {
-        // $_SERVER['QUERY_STRING'] and $_GET['_url'] are ignored when the server
-        // is served using PHP's built-in web server.
         if(isset($_GET['_url'])){
             $this->current_path = $this->filterInput(INPUT_GET, '_url');
         } else {
-            if (isset($_SERVER['QUERY_STRING']) && !str_contains($_SERVER['QUERY_STRING'], '_url')) {
+            if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] === '') {
                 $this->current_path = $_SERVER['QUERY_STRING'];
             } else {
                 $this->current_path = $_SERVER['REQUEST_URI'];
@@ -55,7 +53,7 @@ class Request
             throw new CSRFException('Missing CSRF token.');
         }
         if (!CSRFToken::validate($_POST['_csrf'])) {
-            throw new CSRFException('CSRF token does not match.');
+            throw new CSRFException('CSRF tokens do not match.');
         }
         return !$this->isGet();
     }

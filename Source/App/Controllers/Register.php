@@ -3,6 +3,7 @@
 namespace Waddup\App\Controllers;
 
 use Exception;
+use Waddup\App\Controllers\Filters\GuestOnly;
 use Waddup\Core\Controller;
 use Waddup\Core\Request;
 use Waddup\Core\Response;
@@ -12,7 +13,7 @@ use Waddup\Exceptions\PageNotFound;
 use Waddup\Models\User;
 use Waddup\Session\Session;
 
-class Register extends Controller
+class Register extends GuestOnly
 {
     private string $template_namespace = 'profile';
 

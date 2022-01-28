@@ -28,7 +28,7 @@ class ErrorHandler
     public static function errHandler(int $level, string $message, string $file, int $line)
     {
         if (error_reporting() !== 0) {
-            throw new ErrorException($message, 0, $file, $line);
+            throw new ErrorException($message, 0, $level, $file, $line);
         }
     }
 
@@ -67,7 +67,7 @@ class ErrorHandler
                 error_log(strip_tags(self::getMessage($exception) . "\n\n"));
             }
 
-            $e = new Error(new View(), new Request());
+            $e = new Error([], new View(), new Request());
             $e->showAction(['message' => $situation]);
         }
     }

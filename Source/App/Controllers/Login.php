@@ -3,6 +3,7 @@
 namespace Waddup\App\Controllers;
 
 use Exception;
+use Waddup\App\Controllers\Filters\GuestOnly;
 use Waddup\Core\Controller;
 use Waddup\Core\DB\DBConnectionHandler;
 use Waddup\Core\Request;
@@ -14,7 +15,7 @@ use Waddup\Exceptions\PageNotFound;
 use Waddup\Models\User;
 use Waddup\Session\Session;
 
-class Login extends Controller
+class Login extends GuestOnly
 {
     private string $template_namespace = 'profile';
 
@@ -51,7 +52,7 @@ class Login extends Controller
             $data = $this->request->getBody();
             $user = User::authenticate($data['usermail'], $data['password']);
             if ($user) {
-                if ($data['remember']) {
+                if (isset($data['remember']) && ($data['remember'] === 'on' || $data['remember'] == 1)) {
                     if ($user->rememberLogin()) {
                         setcookie('remember', $user->token, $user->exp_time, '/');
                     }

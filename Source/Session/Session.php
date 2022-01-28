@@ -21,6 +21,7 @@ class Session
 
     public static function set(string $key, mixed $value): void
     {
+        self::init();
         $_SESSION[$key] = $value;
     }
 
@@ -98,6 +99,7 @@ class Session
     protected static function initFlash(): void
     {
         if (!isset($_SESSION['_flash'])) {
+            self::init();
             $_SESSION['_flash'] = [];
         }
     }

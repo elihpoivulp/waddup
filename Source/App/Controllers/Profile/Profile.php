@@ -11,8 +11,10 @@ use Waddup\Exceptions\CSRFException;
 use Waddup\Exceptions\DBError;
 use Waddup\Exceptions\PageNotFound;
 use Waddup\Models\LoggedInUser;
+use Waddup\Models\Post;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
+use Waddup\Utils\CSRFToken;
 
 class Profile extends LoginRequired
 {
@@ -44,16 +46,35 @@ class Profile extends LoginRequired
     {
         if ($this->request->isPost()) {
             if (SessionUserAuth::isLoggedIn()) {
-                Session::setFlash('log', [
-                    'showIcon' => 'exclamation circle',
-                    'message' => "You have been logged out.",
-                    'class' => 'info'
-                ]);
                 LoggedInUser::logsOut(SessionUserAuth::getToken());
                 SessionUserAuth::logout();
                 Response::redirect('login');
             }
         }
         Response::show404();
+    }
+
+    /**
+     * @throws PageNotFound
+     * @throws DBError
+     * @throws Exception
+     */
+    public function postAction()
+    {
+        try {
+            if ($this->request->isPost()) {
+                $post = new Post($this->request->getBody());
+                if ($post->save()) {
+                    $data = [
+                        'new_csrf' => CSRFToken::generate(),
+                    ];
+                    echo json_encode($data);
+                } else {
+                    echo json_encode($post->errors());
+                }
+            }
+        } catch (CSRFException) {
+            Response::show404();
+        }
     }
 }

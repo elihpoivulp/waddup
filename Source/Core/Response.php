@@ -8,7 +8,7 @@ class Response
 {
     public static function redirect(string $location, int $code = 303)
     {
-        header('Location:' . Request::getBaseURL()  . '/'. trim_slashes($location), true, $code);
+        header('Location:' . Request::getBaseURL() . trim_slashes($location), true, $code);
         exit;
     }
 

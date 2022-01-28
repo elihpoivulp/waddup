@@ -88,7 +88,6 @@ class Router
 
     protected function resolve(): bool
     {
-        $has_match = false;
         foreach ($this->routes as $route => $params) {
             if (preg_match($route, $this->removeSlashes($this->current_path), $matches)) {
                 foreach ($matches as $key => $value) {
@@ -98,11 +97,11 @@ class Router
                         $params[$key] = $value;
                     }
                 }
-                $has_match = true;
                 $this->params = $params;
+                return true;
             }
         }
-        return $has_match;
+        return false;
     }
 
     /**

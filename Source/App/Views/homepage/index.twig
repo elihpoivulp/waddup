@@ -8,10 +8,12 @@
             <div class="ui very padded raised segment single-post">
                 <a href="javascript:void(0);">
                     <article class="ui container featured-content">
-                        {% include 'components/segment-header.twig' with {'segment_title': post.title} %}
+{#                        {% include 'components/segment-header.twig' with {'segment_title': post.title} %}#}
                         <small class="text-gray-500">{{ post.date_created|date('F j, o') }}</small>
                         <div class="py-4 mb-4 description featured-description">
-                            {{ post.body }}
+                            {% autoescape false %}
+                                {{ post.description }}
+                            {% endautoescape %}
                         </div>
                         <div class="mt-4 featured-footer extra">
                             <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah
@@ -27,3 +29,9 @@
         </div>
     {% endfor %}
 {% endblock main %}
+{% block page_specific_styles %}
+    <link rel="stylesheet" href="{{ load_asset('assets/vendor/quill/quill.bubble.css') }}">
+{% endblock page_specific_styles %}
+{% block page_specific_scripts %}
+    {% include 'components/quill.twig' %}
+{% endblock page_specific_scripts %}

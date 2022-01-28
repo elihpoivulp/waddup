@@ -1,9 +1,11 @@
 {
   "dependencies": {
-    "fomantic-ui": "^2.8.8"
+    "fomantic-ui": "^2.8.8",
+    "quill": "^1.3.6"
   },
   "scripts": {
-    "build:jquery": "cp node_modules/jquery/dist/jquery.slim.min.js Public/assets/vendor/jquery/",
+    "build:jquery": "cp node_modules/jquery/dist/* Public/assets/vendor/jquery/",
+    "build:quill": "cp node_modules/quill/dist/* Public/assets/vendor/quill",
     "build:tailwind": "npx tailwindcss -i ./Public/assets/_in.css -o ./Public/assets/app.css",
     "watch": "npx tailwindcss -i ./Public/assets/_in.css -o ./Public/assets/app.css -w"
   },

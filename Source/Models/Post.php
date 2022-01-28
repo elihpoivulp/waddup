@@ -41,11 +41,7 @@ class Post extends Model
      */
     public function author(): bool|User
     {
-        $sql = 'select username, email from users where id = :id';
-        $s = self::db()->prepare($sql);
-        $s->setFetchMode(PDO::FETCH_CLASS, User::class);
-        $s->execute([':id' => $this->user_id]);
-        return $s->fetch();
+        return User::findOne($this->user_id);
     }
 
     public function validate(): bool

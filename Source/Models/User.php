@@ -119,6 +119,18 @@ class User extends Model
     /**
      * @throws DBError
      */
+    public static function findOne(int $id): bool|self
+    {
+        $sql = 'select username, email from users where id = :id';
+        $s = self::db()->prepare($sql);
+        $s->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $s->execute([':id' => $id]);
+        return $s->fetch();
+    }
+
+    /**
+     * @throws DBError
+     */
     public static function authenticate(string $email_or_username, string $password): self|bool
     {
         $query = 'select * from users where (username = :u or email = :e)';

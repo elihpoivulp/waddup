@@ -35,7 +35,8 @@
             let user_id = $("input[name='user_id']");
             let archive = $("input[name='archive']");
             let csrf = $("input[name='_csrf']");
-            let body = quill.root.innerHTML.trim();
+            // let body = quill.root.innerHTML.trim();
+            let body = $("textarea[name='body']");
             if (form.form('is valid') && quill.getLength() > 0) {
                 $.ajax({
                     type: "POST",
@@ -43,7 +44,7 @@
                     data: {
                         _csrf: csrf.val(),
                         description: description.val(),
-                        body: body,
+                        body: body.val(),
                         user_id: user_id.val(),
                         archive: archive.val() ?? 0
                     },
@@ -51,7 +52,8 @@
                         let response = JSON.parse(data);
                         csrf.val(response.new_csrf);
                         description.val('');
-                        quill.setText('');
+                        // quill.setText('');
+                        body.val('');
                         archive.val('');
                         $('body')
                             .toast({

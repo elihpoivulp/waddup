@@ -506,6 +506,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   visibility: visible;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mb-32 {
   margin-bottom: 8rem;
 }
@@ -534,6 +539,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 6rem;
 }
 
+.mt-24 {
+  margin-top: 6rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
 .block {
   display: block;
 }
@@ -546,9 +563,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.resize {
+  resize: both;
+}
+
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .text-7xl {
@@ -559,6 +585,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.outline {
+  outline-style: solid;
 }
 
 .blur {

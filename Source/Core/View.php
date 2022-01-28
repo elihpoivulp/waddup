@@ -58,7 +58,10 @@ class View
             $twig->addFunction(new TwigFunction('session', function (string $key) use ($get_in_sess): mixed {
                 return $get_in_sess($key);
             }));
-            $twig->addFunction(new TwigFunction('post_body', fn($c) => htmlspecialchars_decode(stripslashes($c))));
+            $twig->addFunction(new TwigFunction('time_ago', function (string $date): string {
+                return get_time_ago(strtotime($date));
+            }));
+//            $twig->addFunction(new TwigFunction('post_body', fn($c) => htmlspecialchars_decode(stripslashes($c))));
             $twig->addFunction(new TwigFunction('get_in_session_delete', function (string $key) use ($get_in_sess): mixed {
                 $data = $get_in_sess($key);
                 Session::unset($key);

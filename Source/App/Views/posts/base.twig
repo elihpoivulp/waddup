@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
+    {% block post_meta %}
+    {% endblock post_meta %}
+    <title>{% block title %} {{ app ~ ' | ' ~ title ?? app }} {% endblock title %}</title>
+    {% include 'includes/stylesheets.twig' %}
+</head>
+<body>
+{% include 'posts/includes/sidebar.twig' %}
+<div class="pusher">
+    {% include 'includes/logo-header.twig' %}
+    {% include 'includes/main-menu.twig' %}
+    <main class="ui text container mb-32">
+        {% block main %}
+        {% endblock main %}
+    </main>
+</div>
+{% include 'includes/scripts.twig' %}
+</body>
+</html>

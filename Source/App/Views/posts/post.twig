@@ -1,0 +1,35 @@
+{% extends 'posts/base.twig' %}
+{% block post_meta %}
+    {% include 'includes/post-meta.twig' with {'description': post.description } %}
+{% endblock post_meta %}
+{% block main %}
+    <div>
+        <div class="ui very padded top attached segment single-post">
+            <a href="javascript:void(0);">
+                <article class="ui container featured-content">
+                    <small class="text-gray-500">
+                        <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
+                    </small>
+                    <div class="py-8 mb-4 description post-content">
+                        {{ post.body }}
+                    </div>
+                    <div class="mt-4 featured-footer extra">
+                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @{{ post.author.username }}
+                    </div>
+                    <div class="ui top right attached teal label with-popup" data-title="Comments"
+                         data-content="23"
+                         data-position="top center">
+                        <i class="comments icon"></i> 23
+                    </div>
+                </article>
+            </a>
+        </div>
+        <div class="ui bottom attached text menu">
+            <div class="right menu">
+                <a href="javascript:void(0);" class="item" id="add-comment">
+                    Add a comment&nbsp;<i class="comment icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

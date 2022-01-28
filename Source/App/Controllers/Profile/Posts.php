@@ -3,37 +3,33 @@
 namespace Waddup\App\Controllers\Profile;
 
 use Exception;
-use Waddup\App\Controllers\Filters\LoginRequired;
-use Waddup\Core\Response;
-use Waddup\Exceptions\CSRFException;
-use Waddup\Exceptions\DBError;
-use Waddup\Exceptions\PageNotFound;
+use Waddup\Core\Controller;
+use Waddup\Core\Request;
+use Waddup\Core\View;
 use Waddup\Models\Post;
-use Waddup\Utils\CSRFToken;
 
-class Posts extends LoginRequired
+class Posts extends Controller
 {
+    private string $template_namespace = 'posts';
+
     /**
-     * @throws PageNotFound
-     * @throws DBError
      * @throws Exception
      */
-    public function storeAction()
+    public function __construct(array $params, View $view, Request $request)
     {
-        try {
-            if ($this->request->isPost()) {
-                $post = new Post($this->request->getBody());
-                if ($post->save()) {
-                    $data = [
-                        'new_csrf' => CSRFToken::generate(),
-                    ];
-                    echo json_encode($data);
-                } else {
-                    echo json_encode($post->errors());
-                }
-            }
-        } catch (CSRFException) {
-            Response::show404();
-        }
+        parent::__construct($params, $view, $request);
+        $this->view->setTemplateNamespace($this->template_namespace);
+        $this->view->registerTemplatePath(VIEWS_PATH . '/' . $this->template_namespace, $this->template_namespace);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function showAction()
+    {
+        $this->view->render('post.twig', [
+            'title' => 'Story',
+            'post' => Post::findOne($this->params['id'])
+        ]);
     }
 }

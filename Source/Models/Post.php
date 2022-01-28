@@ -23,6 +23,31 @@ class Post extends Model
         return $s->fetchAll();
     }
 
+    /**
+     * @throws DBError
+     */
+    public static function findOne(int $id): bool|self
+    {
+        $sql = 'select * from posts where id = :id';
+        $s = self::db()->prepare($sql);
+        $s->setFetchMode(PDO::FETCH_CLASS, self::class);
+        $s->bindValue(':id', $id);
+        $s->execute();
+        return $s->fetch();
+    }
+
+    /**
+     * @throws DBError
+     */
+    public function author(): bool|User
+    {
+        $sql = 'select username, email from users where id = :id';
+        $s = self::db()->prepare($sql);
+        $s->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $s->execute([':id' => $this->user_id]);
+        return $s->fetch();
+    }
+
     public function validate(): bool
     {
         if (has_length_greater_than($this->description, 250)) {

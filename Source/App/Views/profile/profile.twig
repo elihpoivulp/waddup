@@ -43,13 +43,22 @@
                 <div class="ui raised segments">
                     <div class="ui very padded segment">
                         {% include 'components/segment-header.twig' with {'segment_title': 'Compose'} %}
-                        <div class="field">
-                            <div id="editor"></div>
+{#                        <div class="field">#}
+{#                            <div id="editor"></div>#}
+{#                        </div>#}
+                        <div class="ui left corner labeled input" style="width: 100%">
+                            <div class="ui left corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                            <textarea name="body" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="ui very padded segment">
                         <div class="field">
-                            <div class="ui transparent input">
+                            <div class="ui transparent left corner labeled input">
+                                <div class="ui left corner label">
+                                    <i class="asterisk icon"></i>
+                                </div>
                                 <input type="text" name="description" placeholder="Add a short description" required>
                             </div>
                         </div>
@@ -79,7 +88,7 @@
 {#                    <a href="javascript:void(0);">#}
 {#                        <article class="ui container featured-content">#}
 {#                            {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}#}
-{#                            <div class="py-4 mb-4 description featured-description">#}
+{#                            <div class="py-4 mb-4 description post-content">#}
 {#                                <p>#}
 {#                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid#}
 {#                                    consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum#}
@@ -124,10 +133,95 @@
         </div>
     </div>
 {% endblock main %}
-{% block page_specific_styles %}
-    <link rel="stylesheet" href="{{ load_asset('assets/vendor/quill/quill.bubble.css') }}">
-{% endblock page_specific_styles %}
+{#{% block page_specific_styles %}#}
+{#    <link rel="stylesheet" href="{{ load_asset('assets/vendor/quill/quill.bubble.css') }}">#}
+{#{% endblock page_specific_styles %}#}
 {% block page_specific_scripts %}
     {% include 'components/toast.twig' with {'key': 'reg_success'} %}
-    {% include 'components/quill.twig' %}
+{#    {% include 'components/quill.twig' %}#}
+    <script>
+        $(document).ready(function () {
+            const form = $('.ui.form#new_post_form');
+            form
+                .form({
+                    fields: {
+                        description: {
+                            rules: [
+                                {
+                                    type: 'maxLength[250]',
+                                    prompt: 'Description can\'t exceed 250 characters'
+                                },
+                                {
+                                    type: 'empty',
+                                    prompt: 'Add a description.'
+                                }
+                            ]
+                        }
+                    },
+                    inline: true,
+                    on: 'blur'
+                })
+            ;
+
+            let post_btn = $('#post_btn');
+            post_btn.on('click', function (e) {
+                let description = $("input[name='description']");
+                let user_id = $("input[name='user_id']");
+                let archive = $("input[name='archive']");
+                let csrf = $("input[name='_csrf']");
+                // let body = quill.root.innerHTML.trim();
+                let body = $("textarea[name='body']");
+                if (form.form('is valid')) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ site_url('posts/store') }}",
+                        data: {
+                            _csrf: csrf.val(),
+                            description: description.val(),
+                            body: body.val(),
+                            user_id: user_id.val(),
+                            archive: archive.val() ?? 0
+                        },
+                        success: function (data) {
+                            let response = JSON.parse(data);
+                            csrf.val(response.new_csrf);
+                            description.val('');
+                            // quill.setText('');
+                            body.val('');
+                            archive.val('');
+                            $('body')
+                                .toast({
+                                    showProgress: 'top',
+                                    displayTime: 5000,
+                                    showIcon: 'glass cheers',
+                                    message: 'Your post has been published!',
+                                    position: 'top center',
+                                    class: 'success'
+                                });
+                        }, error: function () {
+                            $('body')
+                                .toast({
+                                    showProgress: 'top',
+                                    displayTime: 5000,
+                                    showIcon: 'frown',
+                                    message: 'An error has occurred. Please try again later.',
+                                    position: 'top center',
+                                    class: 'red'
+                                });
+                        }
+                    });
+                } else {
+                    $('body')
+                        .toast({
+                            showProgress: 'top',
+                            displayTime: 5000,
+                            showIcon: 'warning',
+                            message: 'Add a description or body',
+                            position: 'top center',
+                            class: 'warning'
+                        });
+                }
+            });
+        });
+    </script>
 {% endblock page_specific_scripts %}

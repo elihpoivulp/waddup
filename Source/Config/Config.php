@@ -37,4 +37,9 @@ class Config
         ];
         return $data[$key];
     }
+
+    public static function EMAIL(string $key): string
+    {
+        return $_ENV[$key];
+    }
 }

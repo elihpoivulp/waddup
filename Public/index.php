@@ -24,6 +24,9 @@ $router->addRoute('sandbox', ['controller' => 'Sandbox']);
 // login and register routes
 $router->addRoute('login', ['controller' => 'Login']);
 $router->addRoute('logout', ['controller' => 'Profile', 'action' => 'logout', 'namespace' => 'Profile']);
+$router->addRoute('forgot', ['controller' => 'Forgot']);
+$router->addRoute('password/reset', ['controller' => 'Forgot', 'action' => 'update']);
+$router->addRoute('password/reset/{token:[a-f\d]+}', ['controller' => 'Forgot', 'action' => 'reset']);
 $router->addRoute('register', ['controller' => 'Register']);
 $router->addRoute('register/store', ['controller' => 'Register', 'action' => 'store']);
 

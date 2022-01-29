@@ -13,6 +13,7 @@ use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
+use Waddup\Exceptions\DBError;
 use Waddup\Models\LoggedInUser;
 use Waddup\Models\User as UserModel;
 use Waddup\Session\Session;
@@ -32,7 +33,7 @@ class View
     static protected ?FilesystemLoader $loader = null;
 
     /**
-     * @throws \Waddup\Exceptions\DBError
+     * @throws DBError
      */
     public function __construct()
     {

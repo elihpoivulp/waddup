@@ -92,8 +92,23 @@ class User extends Model
         }
     }
 
+    public function storePassReset(): bool
+    {
+        $token = new Token();
+        $this->password_reset_token = $token->getToken();
+        $token = $token->generateHash();
+        $exp_date = time() + 60 * 60 * 2; // 2 hrs
+        $sql = 'update users set password_reset = :hash, password_reset_expiry = :exp where id = :id';
+        $s = self::db()->prepare($sql);
+        $s->bindValue(':hash', $token);
+        $s->bindValue(':exp', date('Y-m-d H:i:s', $exp_date));
+        $s->bindValue(':id', $this->id);
+        return $s->execute();
+    }
+
     /**
      * Validate the current property values
+     * @param bool $skip_passwords
      * @return void
      * @throws DBError
      */
@@ -158,12 +173,63 @@ class User extends Model
     /**
      * @throws DBError
      */
+    public function resetPassword(string $password): bool
+    {
+        $this->password = $password;
+        $this->validate();
+        if (empty($this->errors())) {
+            $password = password_hash($password, 1);
+            $sql = 'update users set password = :pass, password_reset = null, password_reset_expiry = null where id = :id';
+            $s = self::db()->prepare($sql);
+            $s->bindValue(':pass', $password);
+            $s->bindValue(':id', $this->id);
+            return $s->execute();
+        }
+        return false;
+    }
+
+    /**
+     * @throws DBError
+     */
     public static function findOne(int $id): bool|self
     {
         $sql = 'select * from users where id = :id';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, User::class);
         $s->execute([':id' => $id]);
+        return $s->fetch();
+    }
+
+    /**
+     * @throws DBError
+     * @throws Exception
+     */
+    public static function findByPwdReset(string $token): null|self
+    {
+        $token = new Token($token);
+        $hash = $token->generateHash();
+        $sql = 'select * from users where password_reset = :hash';
+        $s = self::db()->prepare($sql);
+        $s->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $s->execute([':hash' => $hash]);
+        $user = $s->fetch();
+        if ($user) {
+            if (strtotime($user->password_reset_expiry) > time()) {
+                return $user;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @throws DBError
+     */
+    public static function findByEmail(string $email): bool|self
+    {
+        $sql = 'select * from users where email = :email';
+        $s = self::db()->prepare($sql);
+        $s->setFetchMode(PDO::FETCH_CLASS, User::class);
+        $s->execute([':email' => $email]);
         return $s->fetch();
     }
 
@@ -240,6 +306,7 @@ class User extends Model
 
     /**
      * @param string $email
+     * @param int|null $id
      * @return bool
      * @throws DBError
      */
@@ -250,6 +317,7 @@ class User extends Model
 
     /**
      * @param string $username
+     * @param int|null $id
      * @return bool
      * @throws DBError
      */

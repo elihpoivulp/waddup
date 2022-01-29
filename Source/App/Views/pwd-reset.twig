@@ -1,0 +1,23 @@
+{% extends 'base.twig' %}
+{% block main %}
+    <div class="ui very padded raised segment">
+        {% include 'components/segment-header.twig' with {
+            'segment_title': 'Setup New Password',
+        } %}
+        <form class="ui form" method="post" action="{{ site_url('password/reset') }}">
+            <input type="hidden" name="_csrf" value="{{ csrf() }}">
+            <input type="hidden" name="token" value="{{ token }}">
+            <div class=" {{ error_bag('password') ? 'error' : '' }} field">
+                <label for="password">New Password</label>
+                <input type="password" name="password" id="password" placeholder="New password" minlength="4" maxlength="70" required>
+            </div>
+            <button class="ui positive button" type="submit">Submit</button>
+        </form>
+        <div class="mt-4">
+            {{ display_form_errors() }}
+        </div>
+    </div>
+{% endblock main %}
+{% block page_specific_scripts %}
+    {% include 'components/toast.twig' with {'key': 'forgot'} %}
+{% endblock page_specific_scripts %}

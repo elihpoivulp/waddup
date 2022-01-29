@@ -15,7 +15,7 @@ class Post extends Model
      */
     public static function getAll(): bool|array
     {
-        $s = self::db()->prepare('select p.*, count(c.id) as comments_count from posts p join comments c on p.id = c.post_id order by id desc');
+        $s = self::db()->prepare('select *, (select count(id) from comments where post_id = posts.id) as comments_count from posts order by id desc');
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->execute();
         return $s->fetchAll();
@@ -69,7 +69,7 @@ class Post extends Model
             $s->bindValue(':id', (int) $this->user_id, PDO::PARAM_INT);
             $s->bindValue(':body', $this->body, PDO::PARAM_STR);
             $s->bindValue(':description', $this->description);
-            $s->bindValue(':archive', $this->archive === 'on' ? 1 : 0);
+            $s->bindValue(':archive', $this->archive);
             return $s->execute();
         }
         return false;

@@ -1,0 +1,45 @@
+<form class="ui form" id="new_post_form">
+    <input type="hidden" name="_csrf" value="{{ csrf() }}">
+    <input type="hidden" name="user_id" value="{{ user.id }}">
+    <div class="ui raised segments">
+        <div class="ui very padded segment">
+            {% include 'components/segment-header.twig' with {'segment_title': 'Compose'} %}
+            {#                        <div class="field">#}
+            {#                            <div id="editor"></div>#}
+            {#                        </div>#}
+            <div class="ui left corner labeled input" style="width: 100%">
+                <div class="ui left corner label">
+                    <i class="asterisk icon"></i>
+                </div>
+                <textarea name="body" style="resize: none"></textarea>
+            </div>
+        </div>
+        <div class="ui very padded segment">
+            <div class="field">
+                <div class="ui transparent left corner labeled input">
+                    <div class="ui left corner label">
+                        <i class="asterisk icon"></i>
+                    </div>
+                    <input type="text" name="description" placeholder="Add a short description" required>
+                </div>
+            </div>
+            <br>
+            <div class="ui right aligned container">
+                <div class="ui checkbox">
+                    <input type="checkbox" name="archive" id="archive">
+                    <label for="archive">Archive Post</label>
+                </div>
+                <br>
+                <small>
+                                <span class="ui grey text">
+                                    Posts are only visible for 24 hours. Archive your post so it will be saved after expiry.
+                                </span>
+                </small>
+            </div>
+            <br>
+            <div class="ui right aligned container">
+                <button class="ui button" type="button" id="post_btn">Post</button>
+            </div>
+        </div>
+    </div>
+</form>

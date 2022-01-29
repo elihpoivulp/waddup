@@ -29,9 +29,9 @@
             <a class="item active tab-item" data-tab="home">
                 Home
             </a>
-{#            <a class="item tab-item" data-tab="xxx">#}
-{#                New Posts#}
-{#            </a>#}
+            <a class="item tab-item" data-tab="active-posts">
+                Active Posts
+            </a>
 {#            <a class="item tab-item" data-tab="archive">#}
 {#                Archive#}
 {#            </a>#}
@@ -65,7 +65,7 @@
                         <br>
                         <div class="ui right aligned container">
                             <div class="ui checkbox">
-                                <input type="checkbox" name="archive" id="archive">
+                                <input name="archive" id="archive" type="checkbox" tabindex="0">
                                 <label for="archive">Archive Post</label>
                             </div>
                             <br>
@@ -141,6 +141,13 @@
 {#    {% include 'components/quill.twig' %}#}
     <script>
         $(document).ready(function () {
+            let description = $("input[name='description']");
+            let user_id = $("input[name='user_id']");
+            let archive = 0;
+            let csrf = $("input[name='_csrf']");
+            // let body = quill.root.innerHTML.trim();
+            let body = $("textarea[name='body']");
+            let post_btn = $('#post_btn');
             const form = $('.ui.form#new_post_form');
             form
                 .form({
@@ -160,17 +167,20 @@
                     },
                     inline: true,
                     on: 'blur'
+                });
+
+            $('.checkbox')
+                .checkbox({
+                    onChecked: function() {
+                        archive = 1;
+                    },
+                    onUnchecked: function() {
+                        archive = 0;
+                    },
                 })
             ;
 
-            let post_btn = $('#post_btn');
             post_btn.on('click', function (e) {
-                let description = $("input[name='description']");
-                let user_id = $("input[name='user_id']");
-                let archive = $("input[name='archive']");
-                let csrf = $("input[name='_csrf']");
-                // let body = quill.root.innerHTML.trim();
-                let body = $("textarea[name='body']");
                 if (form.form('is valid')) {
                     $.ajax({
                         type: "POST",
@@ -180,7 +190,7 @@
                             description: description.val(),
                             body: body.val(),
                             user_id: user_id.val(),
-                            archive: archive.val() ?? 0
+                            archive: archive
                         },
                         success: function (data) {
                             let response = JSON.parse(data);
@@ -188,7 +198,8 @@
                             description.val('');
                             // quill.setText('');
                             body.val('');
-                            archive.val('');
+                            archive = 0;
+                            $('.checkbox').checkbox('set unchecked');
                             $('body')
                                 .toast({
                                     showProgress: 'top',

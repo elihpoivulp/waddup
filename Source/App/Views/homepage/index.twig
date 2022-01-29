@@ -20,9 +20,9 @@
                         <div class="mt-4 featured-footer extra">
                             <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @{{ post.author.username }}
                         </div>
-                        <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="23"
+                        <div class="ui top right attached teal label with-popup" data-title="Comments" data-content="{{ post.comments_count }}"
                              data-position="top center">
-                            <i class="comments icon"></i> 23
+                            <i class="comments icon"></i> {{ post.comments_count }}
                         </div>
                     </article>
                 </a>

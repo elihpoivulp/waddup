@@ -10,15 +10,12 @@ class Post extends Model
 {
     protected array $fields = ['user_id', 'body', 'description', 'archive'];
 
-    public int $id;
-    public string $date_created;
-
     /**
      * @throws DBError
      */
     public static function getAll(): bool|array
     {
-        $s = self::db()->prepare('select * from posts order by id desc');
+        $s = self::db()->prepare('select p.*, count(c.id) as comments_count from posts p join comments c on p.id = c.post_id order by id desc');
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->execute();
         return $s->fetchAll();
@@ -27,9 +24,17 @@ class Post extends Model
     /**
      * @throws DBError
      */
+    public function comments(): bool|array
+    {
+        return Comment::findPostComments($this->id);
+    }
+
+    /**
+     * @throws DBError
+     */
     public static function findOne(int $id): bool|self
     {
-        $sql = 'select * from posts where id = :id';
+        $sql = 'select p.*, count(c.id) as comments_count from posts p join comments c on p.id = c.post_id where p.id = :id';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->bindValue(':id', $id);

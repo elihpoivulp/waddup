@@ -10,7 +10,7 @@
     {% include 'includes/stylesheets.twig' %}
 </head>
 <body>
-{% include 'posts/includes/sidebar.twig' %}
+{% include 'posts/includes/sidebar.twig' with { 'post_id': post.id, 'comments': post.comments } %}
 <div class="pusher">
     {% include 'includes/logo-header.twig' %}
     {% include 'includes/main-menu.twig' %}
@@ -20,5 +20,35 @@
     </main>
 </div>
 {% include 'includes/scripts.twig' %}
+{% include 'components/toast.twig' with {'key': 'comment'} %}
+<script>
+    $(document).ready(function () {
+        if ('{{ show_sidebar }}') {
+            $('.ui.sidebar')
+                .sidebar('setting', {
+                    dimPage: false,
+                    transition: 'overlay'
+                })
+                .sidebar('toggle')
+            ;
+        } else {
+            $('#add-comment').on('click', function () {
+                $('.ui.sidebar')
+                    .sidebar('setting', {
+                        dimPage: false,
+                        transition: 'overlay'
+                    })
+                    .sidebar('toggle')
+                ;
+            })
+        }
+
+        $('#close-sidebar').on('click', function () {
+            $('.ui.sidebar')
+                .sidebar('toggle')
+            ;
+        })
+    });
+</script>
 </body>
 </html>

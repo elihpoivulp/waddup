@@ -5,6 +5,7 @@ namespace Waddup\App\Controllers\Profile;
 use Exception;
 use Waddup\Core\Controller;
 use Waddup\Core\Request;
+use Waddup\Core\Response;
 use Waddup\Core\View;
 use Waddup\Models\Post;
 
@@ -27,9 +28,14 @@ class Posts extends Controller
      */
     public function showAction()
     {
-        $this->view->render('post.twig', [
-            'title' => 'Story',
-            'post' => Post::findOne($this->params['id'])
+        if ($post = Post::findOne($this->params['id'])) {
+            $this->view->render('post.twig', [
+                'title' => 'Story',
+                'post' => $post,
+                'show_sidebar' => $_GET['posted'] ?? false
         ]);
+        } else {
+            Response::show404();
+        }
     }
 }

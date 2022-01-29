@@ -32,6 +32,7 @@ $router->addRoute('profile', ['controller' => 'Profile', 'namespace' => 'Profile
 
 // posts
 $router->addRoute('posts/store', ['controller' => 'PostsActions', 'action' => 'store', 'namespace' => 'Profile']);
+$router->addRoute('posts/save-comment', ['controller' => 'CommentsActions', 'action' => 'store', 'namespace' => 'Profile']);
 $router->addRoute('posts/{id:\d+}', ['controller' => 'Posts', 'action' => 'show', 'namespace' => 'Profile']);
 
 // general route

@@ -1,32 +1,63 @@
 <div class="ui very wide right sidebar">
-    <div class="ui very padded segment" style="height: 100%">
+    <div class="ui padded segment" style="height: 100%">
         <div class="mb-24 with-popup" data-content="Close">
             <button class="ui right floated icon circular button" id="close-sidebar">
                 <i class="times icon"></i>
             </button>
         </div>
-        <div class="ui feed">
-            <div class="event">
-                <div class="label">
-                    <img src="{{ load_placeholder() }}">
-                </div>
-                <div class="content">
-                    <div class="summary">
-                        <a>Joe Henderson</a> posted on his page
-                        <div class="date">
-                            3 days ago
+        <section class="ui raised feed segment" id="comments-feed">
+            {% for comment in comments %}
+                <article class="event">
+                    <div class="label">
+                        <img src="{{ load_placeholder() }}">
+                    </div>
+                    <div class="content">
+                        <div class="summary">
+                            {% if comment.author %}
+                                {{ comment.author.name }}
+                            {% else %}
+                                Guest
+                            {% endif %}
+                            <div class="date">
+                                <time datetime="{{ comment.date_created }}">{{ time_ago(comment.date_created) }}</time>
+                            </div>
+                        </div>
+                        <div class="extra text post-content">
+                            {% autoescape false %}
+                                {{ comment.body|replace({'\n': '<br>'}) }}
+                            {% endautoescape %}
                         </div>
                     </div>
-                    <div class="extra text">
-                        Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                </article>
+            {% endfor %}
+        </section>
+        <section class="ui raised comment-form-container segment">
+            <div class="ui container">
+                {% include 'components/segment-header.twig' with {'segment_title': 'Add a comment'} %}
+                <form class="ui form" id="comment-form" method="post" action="{{ site_url('posts/save-comment') }}">
+                    <input type="hidden" name="_csrf" value="{{ csrf() }}">
+                    <input type="hidden" name="post_id" value="{{ post_id }}">
+                    {% if not is_logged_in() %}
+                        {% set row = 4 %}
+                        <input type="hidden" name="user_id" value="null">
+                    {% else %}
+                        {% set row = 6 %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                    {% endif %}
+                    <div class="field">
+                        <div class="ui left corner labeled input" style="width: 100%">
+                            <div class="ui left corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                            <textarea name="body" required style="resize: none" placeholder="Your comment"
+                                      rows="{{ row }}" maxlength="250"></textarea>
+                        </div>
                     </div>
-                    <div class="meta">
-                        <a class="like">
-                            <i class="like icon"></i> 5 Likes
-                        </a>
+                    <div class="ui right aligned container">
+                        <button class="ui button" type="submit" id="submit-comment">Submit</button>
                     </div>
-                </div>
+                </form>
             </div>
-        </div>
+        </section>
     </div>
 </div>

@@ -46,20 +46,4 @@ $(document).ready(function () {
             inline: true,
             on: 'blur'
         });
-
-    $('#add-comment').on('click', function () {
-        $('.ui.sidebar')
-            .sidebar('setting', {
-                dimPage: false,
-                transition: 'overlay'
-            })
-            .sidebar('toggle')
-        ;
-    })
-
-    $('#close-sidebar').on('click', function () {
-        $('.ui.sidebar')
-            .sidebar('toggle')
-        ;
-    })
 });

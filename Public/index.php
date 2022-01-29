@@ -29,6 +29,8 @@ $router->addRoute('register/store', ['controller' => 'Register', 'action' => 'st
 
 // profile
 $router->addRoute('profile', ['controller' => 'Profile', 'namespace' => 'Profile']);
+$router->addRoute('profile/settings', ['controller' => 'Settings', 'namespace' => 'Profile']);
+$router->addRoute('settings/update/{update:(password|profile)}', ['controller' => 'Settings', 'action' => 'update', 'namespace' => 'Profile']);
 
 // posts
 $router->addRoute('posts/store', ['controller' => 'PostsActions', 'action' => 'store', 'namespace' => 'Profile']);

@@ -60,11 +60,44 @@ class User extends Model
     }
 
     /**
+     * @throws DBError
+     */
+    public function update(string $type = 'profile'): bool
+    {
+        if ($type === 'profile') {
+            $this->validate(true);
+        } else {
+            $this->validate();
+        }
+
+       if (empty($this->errors())) {
+           $sql = 'update users set name = :name, email = :email, username = :username, password = :password where id = :id';
+           $password = password_hash($this->password, 1);
+           $s = self::db()->prepare($sql);
+           $s->bindValue(':name', $this->name);
+           $s->bindValue(':email', $this->email);
+           $s->bindValue(':username', $this->username);
+           $s->bindValue(':password', $password);
+           $s->bindValue(':id', $this->id);
+           return $s->execute();
+       }
+       return false;
+    }
+
+    public function editProp(string $prop, $val)
+    {
+        // if $prop value is same as previous, skip
+        if (property_exists($this, $prop) && $val !== $this->$prop) {
+            $this->$prop = $val;
+        }
+    }
+
+    /**
      * Validate the current property values
      * @return void
      * @throws DBError
      */
-    public function validate(): void
+    public function validate(bool $skip_passwords = false): void
     {
         $errors = [];
 
@@ -80,7 +113,7 @@ class User extends Model
             $errors['username']['message'] = 'Username can\'t have more than 32 characters.';
         } else if (has_length_less_than($username, 4)) {
             $errors['username']['message'] = 'Username can\'t be less than 4 characters.';
-        } else if (self::usernameExists($username)) {
+        } else if (self::usernameExists($username, $this->id ?? null)) {
             $errors['username']['message'] = 'Username already exists.';
         }
 
@@ -91,17 +124,22 @@ class User extends Model
             $errors['email']['message'] = 'Email can\'t have more than 70 characters.';
         } else if (has_length_less_than($email, 4)) {
             $errors['email']['message'] = 'Email can\'t be less than 4 characters.';
-        } else if (self::emailExists($email)) {
+        } else if (self::emailExists($email, $this->id ?? null)) {
             $errors['email']['message'] = 'Email already exists.';
         }
 
-        $p = $this->password;
-        if (has_length_greater_than($p, 33)) {
-            $errors['password']['message'] = 'Password can\'t have more than 70 characters.';
-        } else if (has_length_less_than($p, 4)) {
-            $errors['password']['message'] = 'Password can\'t be less than 4 characters.';
-        } else if (!is_exactly($p, $this->confirm_password)) {
-            $errors['password']['message'] = 'Passwords do not match.';
+        if (!$skip_passwords) {
+            $p = $this->password;
+            if (has_length_greater_than($p, 33)) {
+                $errors['password']['message'] = 'Password can\'t have more than 70 characters.';
+            } else if (has_length_less_than($p, 4)) {
+                $errors['password']['message'] = 'Password can\'t be less than 4 characters.';
+            }
+            if ($this->confirm_password) {
+                if (!is_exactly($p, $this->confirm_password)) {
+                    $errors['password']['message'] = 'Passwords do not match.';
+                }
+            }
         }
 
         if ($errors) {
@@ -158,12 +196,15 @@ class User extends Model
      */
     public static function loginFromCookie(): self|bool
     {
-        $token = new Token($_COOKIE['remember']);
-        $token = $token->generateHash();
-        $remembered = RememberedLogins::findOne($token);
-        if (!$remembered->hasExpired()) {
-            self::login($remembered->user_id);
-            return self::findOne($remembered->user_id);
+        $cookie = $_COOKIE['remember'] ?? false;
+        if ($cookie) {
+            $token = new Token($cookie);
+            $token = $token->generateHash();
+            $remembered = RememberedLogins::findOne($token);
+            if (!$remembered->hasExpired()) {
+                self::login($remembered->user_id);
+                return self::findOne($remembered->user_id);
+            }
         }
         return false;
     }
@@ -202,9 +243,9 @@ class User extends Model
      * @return bool
      * @throws DBError
      */
-    public static function emailExists(string $email): bool
+    public static function emailExists(string $email, ?int $id = null): bool
     {
-        return self::_exists('email', $email);
+        return self::_exists('email', $email, $id);
     }
 
     /**
@@ -212,17 +253,21 @@ class User extends Model
      * @return bool
      * @throws DBError
      */
-    public static function usernameExists(string $username): bool
+    public static function usernameExists(string $username, ?int $id = null): bool
     {
-        return self::_exists('username', $username);
+        return self::_exists('username', $username, $id);
     }
 
     /**
      * @throws DBError
      */
-    protected static function _exists(string $col, string $val): bool
+    protected static function _exists(string $col, string $val, ?int $id = null): bool
     {
-        $s = self::db()->prepare("select id from users where $col = :$col");
+        $sql = "select id from users where $col = :$col";
+        if (isset($id)) {
+            $sql .= " and id != " . $id;
+        }
+        $s = self::db()->prepare($sql);
         $s->execute([":$col" => $val]);
         return $s->rowCount() > 0;
     }

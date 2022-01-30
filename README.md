@@ -43,3 +43,8 @@ cp ./.env-example ./.env
 ```text
 http://localhost/waddup
 ```
+
+10. Register for an account at
+```text
+http://localhost/waddup/register
+```

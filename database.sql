@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 30, 2022 at 12:34 PM
+-- Generation Time: Jan 30, 2022 at 01:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -34,13 +34,6 @@ CREATE TABLE `active_logins` (
   `date_logged_out` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `active_logins`
---
-
-INSERT INTO `active_logins` (`token`, `user_id`, `date_logged_in`, `date_logged_out`) VALUES
-('86e18cd683bd8b4a6ea0ad3312e2818bcc392cb861710fa8ef612ae9a05e7f27', 1, '2022-01-30 19:19:25', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -54,13 +47,6 @@ CREATE TABLE `comments` (
   `body` text NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `user_id`, `post_id`, `body`, `date_created`) VALUES
-(1, 1, 2, 'test', '2022-01-30 19:30:40');
 
 -- --------------------------------------------------------
 
@@ -77,14 +63,6 @@ CREATE TABLE `posts` (
   `expired` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `user_id`, `description`, `body`, `archive`, `expired`, `date_created`) VALUES
-(1, 1, 'test', 'test', 1, 1, '2022-01-12 19:20:05'),
-(2, 1, 'test 2', 'test 2', 1, 0, '2022-01-30 19:20:19');
 
 -- --------------------------------------------------------
 
@@ -115,13 +93,6 @@ CREATE TABLE `users` (
   `password_reset_expiry` datetime DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `username`, `photo`, `email`, `password`, `password_reset`, `password_reset_expiry`, `date_created`) VALUES
-(1, 'Nicko Gamba', 'nickogamba', '43ecd3d0a3ab2bb4bee3fd63838e01b3.jpg', 'nicko@gamba.com', '$2y$10$6kWsd5pVLOxhgqShVddKXeeE8oKDYXBpT5XVyYhOAT1UH0/H8cTK.', NULL, NULL, '2022-01-30 19:19:19');
 
 --
 -- Indexes for dumped tables
@@ -173,19 +144,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

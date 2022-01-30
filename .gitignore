@@ -6,3 +6,5 @@ node_modules
 vendor
 todo.txt
 Logs/*
+!Public/assets/images/uploads/avatar.png
+Public/assets/images/uploads/*

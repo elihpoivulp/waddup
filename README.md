@@ -1,41 +1,45 @@
 # Waddup
+Requirements
+- PHP (8.1)
+- Composer
+- MySQL
+- NPM
 
-## Instructions
-### Installation
+## Installation
 1. Download/clone this repo.
 ```shell
 git clone git@github.com:elihpoivulp/waddup.git
 ```
 
-2. Change directory into the project root.
-```shell
-cd waddup
-```
-
-3. Install PHP dependencies.
-```shell
-composer install
-```
-
-### Running
-#### Using PHP's Built-in Server
-1. Change directory into the `Public/` folder. <br>
-*Assuming you are inside the project root (`waddup/`)*
-```shell
-cd ./Public
-```
-
-2. Then run,
-```shell
-php -S localhost:8000
-```
-
-3. Open browser and type in the address bar: `http://localhost:8000`
-
-#### Accessing from the Server Root (e.g., `htdocs/`)
-1. After cloning or extracting the repo, move the project folder (`waddup/`) to your webserver's root folder (e.g., `htdocs/`).
+2. After cloning or extracting the repo, move the project folder (`waddup/`) to your webserver's root folder (e.g., `htdocs/`).
 ```shell
 mv ./waddup /path/to/htdocs/
 ```
 
-2. Open browser and type in: `http://localhost/waddup/`
+3. Change directory into the project root.
+```shell
+cd /path/to/htdocs/waddup
+```
+
+4. Install PHP and frontend dependencies.
+```shell
+composer install
+npm install
+npm run build:jquery
+```
+
+5. Create a copy of `.env-example` file and rename it `.env`
+```shell
+cp ./.env-example ./.env
+```
+
+6. Edit `.env` file with your database and email (optional-however email for forgot password feature will not work) configurations.
+
+
+7. Upload the database script file to your database.
+
+
+9. Run in the browser.
+```text
+http://localhost/waddup
+```

@@ -120,8 +120,13 @@ class View
                 }
             }));
 
-            $twig->addFunction(new TwigFunction('load_placeholder', function (string $folder = 'images/placeholders/avatar/large', string $file = 'ade.jpg') use ($url_func): string {
-                return $url_func("assets/$folder/$file");
+//            $twig->addFunction(new TwigFunction('load_placeholder', function (string $folder = 'images/placeholders/avatar/large', string $file = 'ade.jpg') use ($url_func): string {
+//                return $url_func("assets/$folder/$file");
+//            }));
+
+
+            $twig->addFunction(new TwigFunction('load_placeholder', function () use ($url_func): string {
+                return $url_func("assets/images/uploads/avatar.png");
             }));
 
             // get flash from session

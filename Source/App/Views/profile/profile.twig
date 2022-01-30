@@ -6,7 +6,7 @@
                 <div class="ui basic segment">
                     <div class="ui card">
                         <div class="image">
-                            <img src="{{ load_placeholder() }}">
+                            <img src="{{ user.getProfilePhoto }}" alt="{{ user.name ~ "'s profile photo" }}">
                         </div>
                         <div class="content">
                             <a class="header">{{ user.name }}</a>
@@ -17,7 +17,7 @@
                         <div class="extra content">
                             <i class="paperclip icon"></i>
                             {% set post_count = user.getAllPosts|length %}
-                            {{ post_count ~ ' Post' ~ (post_count > 1 ? 's' : '') }}
+                            {{ post_count ~ ' Post' ~ ((post_count > 1 or post_count == 0) ? 's' : '') }}
                             <a href="{{ site_url('profile/settings') }}" class="ui bottom right attached label">Edit</a>
                         </div>
                     </div>
@@ -81,49 +81,6 @@
                     </div>
                 </div>
             </form>
-            <!--
-{#            <div>#}
-{#                <div class="ui very padded top attached segment single-post">#}
-{#                    <a href="javascript:void(0);">#}
-{#                        <article class="ui container featured-content">#}
-{#                            {% include 'components/segment-header.twig' with {'segment_title': 'Some Title'} %}#}
-{#                            <div class="py-4 mb-4 description post-content">#}
-{#                                <p>#}
-{#                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid#}
-{#                                    consequatur dolore dolorem eius eligendi eos eveniet inventore magnam nostrum#}
-{#                                    provident quisquam, quo, quos rem repellendus rerum sed sequi tempora?#}
-{#                                </p>#}
-{#                            </div>#}
-{#                            <div class="mt-4 featured-footer extra">#}
-{#                                <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @hahah#}
-{#                            </div>#}
-{#                            <div class="ui top right attached teal label with-popup" data-title="Comments"#}
-{#                                 data-content="23"#}
-{#                                 data-position="top center">#}
-{#                                <i class="comments icon"></i> 23#}
-{#                            </div>#}
-{#                        </article>#}
-{#                    </a>#}
-{#                </div>#}
-{#                <div class="ui bottom attached menu">#}
-{#                    <div class="ui upward dropdown left floated item">#}
-{#                        <i class="settings icon"></i>#}
-{#                        <div class="menu">#}
-{#                            <div class="item">#}
-{#                                <i class="dropdown icon"></i>#}
-{#                                <span class="text">New</span>#}
-{#                                <div class="menu">#}
-{#                                    <div class="item">Document</div>#}
-{#                                    <div class="item">Image</div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="item">Save As...</div>#}
-{#                            <div class="item">Edit</div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
--->
         </div>
         <div class="ui bottom attached tab" data-tab="xxx">
         </div>

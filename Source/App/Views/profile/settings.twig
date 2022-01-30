@@ -3,23 +3,24 @@
     <div class="ui basic segment">
         <div class="ui left attached rail rail-profile">
             <div class="mt-3">
-                <div class="ui basic segment">
+                <form class="ui basic segment form" action="{{ site_url('profile/update-photo') }}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_csrf" value="{{ csrf() }}">
                     <div class="ui card">
                         <div class="image">
-                            <img src="{{ load_placeholder() }}">
+                            <img src="{{ user.getProfilePhoto }}" alt="{{ user.name ~ "'s profile photo" }}">
                         </div>
                         <div class="content">
-                            <input type="file" name="" id="">
+                            <input type="file" name="profile-photo" required>
                         </div>
                         <div class="meta extra">
                             <div class="ui center aligned container">
-                                <button class="ui green tertiary small button">
+                                <button type="submit" class="ui green tertiary small button">
                                     Save
                                 </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="mb-4">

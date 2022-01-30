@@ -16,6 +16,7 @@ use Waddup\Models\User;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
 use Waddup\Utils\CSRFToken;
+use Waddup\Utils\Token;
 
 class Settings extends LoginRequired
 {
@@ -42,6 +43,46 @@ class Settings extends LoginRequired
     }
 
     /**
+     * @throws PageNotFound
+     * @throws CSRFException
+     * @throws Exception
+     */
+    public function updatePhotoAction()
+    {
+        if ($this->request->isPost()) {
+            $name = $_FILES['profile-photo']['name'];
+            $ext = strtolower(substr($name, strrpos($name, '.') + 1));
+            $token = new Token();
+            $new_name = $token->getToken() . ".$ext";
+            $upload = UPLOADS_PATH . "/$new_name";
+            $user = $this->getUser();
+            if ($user->updateProfilePhoto($new_name)) {
+                Session::setFlash('settings', [
+                    'class' => 'success',
+                    'showIcon' => 'check circle',
+                    'message' => 'Profile photo has been updated'
+                ]);
+               if (!move_uploaded_file($_FILES['profile-photo']['tmp_name'], $upload)) {
+                   Session::setFlash('settings', [
+                       'class' => 'orange',
+                       'showIcon' => 'exclamation circle',
+                       'message' => 'Cannot upload image.'
+                   ]);
+               }
+            } else {
+                Session::setFlash('settings', [
+                    'class' => 'red',
+                    'showIcon' => 'exclamation circle',
+                    'message' => 'An error has occurred. Please try again later.'
+                ]);
+            }
+            Response::redirect('/profile/settings');
+        } else {
+            Response::show404();
+        }
+    }
+
+    /**
      * @throws DBError
      * @throws PageNotFound
      * @throws CSRFException
@@ -61,7 +102,7 @@ class Settings extends LoginRequired
                 $pref = 'update';
                 $type = ucfirst($update);
                 $method = $pref.$type;
-                $user = LoggedInUser::getLoggedInUser(SessionUserAuth::getToken()) ?? User::loginFromCookie();
+                $user = $this->getUser();
                 if ($this->$method($user, $this->request->getBody())) {
                     Session::setFlash('settings', [
                         'class' => 'success',
@@ -70,10 +111,17 @@ class Settings extends LoginRequired
                     ]);
                 }
             }
-            Response::redirect('/profile/settings');
         } else {
             Response::show404();
         }
+    }
+
+    /**
+     * @throws DBError
+     */
+    protected function getUser(): User
+    {
+        return LoggedInUser::getLoggedInUser(SessionUserAuth::getToken()) ?? User::loginFromCookie();
     }
 
     /**

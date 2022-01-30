@@ -5,6 +5,7 @@ namespace Waddup\Models;
 use Exception;
 use PDO;
 use Waddup\Core\Model;
+use Waddup\Core\Request;
 use Waddup\Exceptions\DBError;
 use Waddup\Session\Session;
 use Waddup\Session\SessionUserAuth;
@@ -198,6 +199,25 @@ class User extends Model
             return $s->execute();
         }
         return false;
+    }
+
+    /**
+     * @throws DBError
+     */
+    public function updateProfilePhoto(string $image): bool
+    {
+        if (!is_null($this->photo)) {
+            unlink(UPLOADS_PATH . "/$this->photo");
+        }
+        $sql = 'update users set photo = :image where id = :id';
+        $s = self::db()->prepare($sql);
+        return $s->execute([':image' => $image, ':id' => $this->id]);
+    }
+
+    public function getProfilePhoto(): string
+    {
+        $image = $this->photo ?? 'avatar.png';
+        return Request::getBaseURL() . '/assets/images/uploads/' . $image;
     }
 
     /**

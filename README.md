@@ -50,3 +50,9 @@ http://localhost/waddup/register
 ```
 
 *Note: if the DEBUG is off in the .env, this will create a folder Logs/ in the project root level. Make sure that you have appropriate permissions for this to work*
+
+### Test accounts
+```text
+testuser@test.com:asdasd
+jdoe@test.com:asdasd
+```

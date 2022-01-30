@@ -24,7 +24,10 @@ class Post extends Model
      */
     public static function getPostsForScroll(?int $id = null): bool|array
     {
-        $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.id and p.expired = 0 < :id order by p.id desc limit 3';
+        if ($id === 1) {
+            return [];
+        }
+        $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.id < :id and p.expired = 0 order by p.id desc limit 3';
         $params = [':id' => $id];
         if (is_null($id)) {
             $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 0 order by p.id desc limit 3';

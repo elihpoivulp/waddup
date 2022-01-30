@@ -31,9 +31,9 @@
             <a class="item tab-item" data-tab="active-posts">
                 Active Posts
             </a>
-{#            <a class="item tab-item" data-tab="archive">#}
-{#                Archive#}
-{#            </a>#}
+            <a class="item tab-item" data-tab="archived-posts">
+                Archived Posts
+            </a>
         </div>
         <div class="ui bottom attached active tab" data-tab="home">
             <form class="ui form" id="new_post_form">
@@ -82,10 +82,73 @@
                 </div>
             </form>
         </div>
-        <div class="ui bottom attached tab" data-tab="xxx">
+        <div class="ui bottom attached tab" data-tab="active-posts">
+            {% if active_posts %}
+                {% for post in active_posts %}
+                    <div class="single-post-article" id="{{ post.id }}">
+                        <div class="ui very padded raised segment single-post">
+                            <a href="{{ site_url('posts/' ~ post.id) }}">
+                                <article class="ui container featured-content">
+                                    <small class="text-gray-500">
+                                        <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
+                                    </small>
+                                    <div class="py-8 mb-4 description post-content">
+                                        {% autoescape false %}
+                                            {{ substr(post.body, 0, 250)|replace({'\n': '<br>'}) }}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="mt-4 featured-footer extra">
+                                        <img src="{{ load_placeholder() }}" class="ui circular avatar image">
+                                        @{{ post.writer }}
+                                    </div>
+                                    <div class="ui top right attached teal label with-popup" data-title="Comments"
+                                         data-content="{{ post.comments_count }}"
+                                         data-position="top center">
+                                        <i class="comments icon"></i> {{ post.comments_count }}
+                                    </div>
+                                </article>
+                            </a>
+                        </div>
+                        <div class="ui divider"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="ui header">No posts available.</div>
+            {% endif %}
         </div>
-        <div class="ui bottom attached tab" data-tab="archive">
-            archive
+        <div class="ui bottom attached tab" data-tab="archived-posts">
+            {% if archived_posts %}
+                {% for post in archived_posts %}
+                    <div class="single-post-article" id="{{ post.id }}">
+                        <div class="ui very padded raised segment single-post">
+                            <a href="{{ site_url('posts/' ~ post.id) }}">
+                                <article class="ui container featured-content">
+                                    <small class="text-gray-500">
+                                        <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
+                                    </small>
+                                    <div class="py-8 mb-4 description post-content">
+                                        {% autoescape false %}
+                                            {{ substr(post.body, 0, 250)|replace({'\n': '<br>'}) }}
+                                        {% endautoescape %}
+                                    </div>
+                                    <div class="mt-4 featured-footer extra">
+                                        <img src="{{ load_placeholder() }}" class="ui circular avatar image">
+                                        @{{ post.writer }}
+                                    </div>
+                                    <div class="ui top right attached teal label with-popup" data-title="Comments"
+                                         data-content="{{ post.comments_count }}"
+                                         data-position="top center">
+                                        <i class="comments icon"></i> {{ post.comments_count }}
+                                    </div>
+                                </article>
+                            </a>
+                        </div>
+                        <div class="ui divider"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="ui header">No archived posts available.</div>
+            {% endif %}
         </div>
     </div>
 {% endblock main %}

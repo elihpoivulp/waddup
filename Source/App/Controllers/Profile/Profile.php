@@ -30,10 +30,15 @@ class Profile extends LoginRequired
         $this->view->registerTemplatePath(VIEWS_PATH . '/' . $this->template_namespace, $this->template_namespace);
     }
 
+    /**
+     * @throws DBError
+     */
     public function indexAction()
     {
         $this->view->render('profile.twig', [
-            'title' => 'Profile'
+            'title' => 'Profile',
+            'active_posts' => Post::getActivePosts($this->user->id),
+            'archived_posts' => Post::getArchivedPosts($this->user->id)
         ]);
     }
 

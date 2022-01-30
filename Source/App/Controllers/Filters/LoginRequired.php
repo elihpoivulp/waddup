@@ -36,6 +36,8 @@ abstract class LoginRequired extends Controller
                 $next = '?next=' . urlencode($uri);
             }
             Response::redirect('login' . $next);
+        } else {
+            $this->user = $user;
         }
         return true;
     }

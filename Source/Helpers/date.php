@@ -17,7 +17,7 @@ function get_time_ago($time)
         $d = $time_difference / $secs;
         if ($d >= 1) {
             $t = round($d);
-            return 'about ' . $t . ' ' . $str . ($t > 1 ? 's' : '') . ' ago';
+            return $t . ' ' . $str . ($t > 1 ? 's' : '') . ' ago';
         }
     }
 }

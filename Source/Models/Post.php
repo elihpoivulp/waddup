@@ -15,7 +15,7 @@ class Post extends Model
      */
     public static function getAll(): bool|array
     {
-        $sql = 'select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id order by id desc';
+        $sql = 'select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 0 order by id desc';
         return self::getResult($sql);
     }
 
@@ -24,13 +24,35 @@ class Post extends Model
      */
     public static function getPostsForScroll(?int $id = null): bool|array
     {
-        $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.id < :id order by p.id desc limit 3';
+        $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.id and p.expired = 0 < :id order by p.id desc limit 3';
         $params = [':id' => $id];
         if (is_null($id)) {
-            $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id order by p.id desc limit 3';
+            $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 0 order by p.id desc limit 3';
             $params = [];
         }
         return self::getResult($sql, $params);
+    }
+
+    /**
+     * @throws DBError
+     */
+    public static function getArchivedPosts(int $id): array
+    {
+        $sql = 'select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 1 and p.user_id = :id order by id desc';
+        $s = self::db()->prepare($sql);
+        $s->execute([':id' => $id]);
+        return $s->fetchAll();
+    }
+
+    /**
+     * @throws DBError
+     */
+    public static function getActivePosts(int $id): array
+    {
+        $sql = 'select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 0 and p.user_id = :id order by id desc';
+        $s = self::db()->prepare($sql);
+        $s->execute([':id' => $id]);
+        return $s->fetchAll();
     }
 
     /**
@@ -61,7 +83,7 @@ class Post extends Model
      */
     public static function findOne(int $id): bool|self
     {
-        $sql = 'select p.*, count(c.id) as comments_count, u.username as writer from posts p join comments c on p.id = c.post_id join users u on u.id = p.user_id where p.id = :id';
+        $sql = 'select p.*, count(c.id) as comments_count, u.username as writer from posts p join comments c on p.id = c.post_id join users u on u.id = p.user_id where p.id = :id and expired = 0';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->bindValue(':id', $id);

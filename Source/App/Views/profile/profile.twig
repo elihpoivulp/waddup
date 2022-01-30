@@ -98,7 +98,7 @@
                                         {% endautoescape %}
                                     </div>
                                     <div class="mt-4 featured-footer extra">
-                                        <img src="{{ load_placeholder() }}" class="ui circular avatar image">
+                                        <img src="{{ user.getProfilePhoto }}" class="ui circular avatar image" alt="{{ post.writer }}'s post">
                                         @{{ post.writer }}
                                     </div>
                                     <div class="ui top right attached teal label with-popup" data-title="Comments"
@@ -121,27 +121,25 @@
                 {% for post in archived_posts %}
                     <div class="single-post-article" id="{{ post.id }}">
                         <div class="ui very padded raised segment single-post">
-                            <a href="{{ site_url('posts/' ~ post.id) }}">
-                                <article class="ui container featured-content">
-                                    <small class="text-gray-500">
-                                        <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
-                                    </small>
-                                    <div class="py-8 mb-4 description post-content">
-                                        {% autoescape false %}
-                                            {{ substr(post.body, 0, 250)|replace({'\n': '<br>'}) }}
-                                        {% endautoescape %}
-                                    </div>
-                                    <div class="mt-4 featured-footer extra">
-                                        <img src="{{ load_placeholder() }}" class="ui circular avatar image">
-                                        @{{ post.writer }}
-                                    </div>
-                                    <div class="ui top right attached teal label with-popup" data-title="Comments"
-                                         data-content="{{ post.comments_count }}"
-                                         data-position="top center">
-                                        <i class="comments icon"></i> {{ post.comments_count }}
-                                    </div>
-                                </article>
-                            </a>
+                            <article class="ui container featured-content">
+                                <small class="text-gray-500">
+                                    <time datetime="{{ post.date_created }}">{{ time_ago(post.date_created) }}</time>
+                                </small>
+                                <div class="py-8 mb-4 description post-content">
+                                    {% autoescape false %}
+                                        {{ substr(post.body, 0, 250)|replace({'\n': '<br>'}) }}
+                                    {% endautoescape %}
+                                </div>
+                                <div class="mt-4 featured-footer extra">
+                                    <img src="{{ user.getProfilePhoto }}" class="ui circular avatar image" alt="{{ post.writer }}'s post">
+                                    @{{ post.writer }}
+                                </div>
+                                <div class="ui top right attached teal label with-popup" data-title="Comments"
+                                     data-content="{{ post.comments_count }}"
+                                     data-position="top center">
+                                    <i class="comments icon"></i> {{ post.comments_count }}
+                                </div>
+                            </article>
                         </div>
                         <div class="ui divider"></div>
                     </div>

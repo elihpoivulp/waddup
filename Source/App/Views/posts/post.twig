@@ -16,7 +16,8 @@
                         {% endautoescape %}
                     </div>
                     <div class="mt-4 featured-footer extra">
-                        <img src="{{ load_placeholder() }}" class="ui circular avatar image"> @{{ post.writer }}
+                        <img src="{{ site_url('assets/images/uploads') ~ '/' ~ post.user_photo }}" class="ui circular avatar image" alt="{{ post.writer }}'s post">
+                        @{{ post.writer }}
                     </div>
                     <div class="ui top right attached teal label with-popup" data-title="Comments"
                          data-content="{{ post.comments_count }}"

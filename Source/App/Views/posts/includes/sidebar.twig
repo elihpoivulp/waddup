@@ -9,7 +9,7 @@
             {% for comment in comments %}
                 <article class="event">
                     <div class="label">
-                        <img src="{{ load_placeholder() }}">
+                        <img src="{{ site_url('assets/images/uploads') ~ '/' ~ post.user_photo }}" alt="{{ post.writer }}'s comment">
                     </div>
                     <div class="content">
                         <div class="summary">

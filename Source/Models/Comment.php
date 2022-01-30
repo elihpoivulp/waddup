@@ -15,7 +15,7 @@ class Comment extends Model
      */
     public static function findPostComments(int $post_id): bool|array
     {
-        $sql = 'select c.*, u.name as writer from comments c left join users u on u.id = c.user_id where post_id = :id';
+        $sql = 'select c.*, u.name as writer, u.photo as user_photo from comments c left join users u on u.id = c.user_id where post_id = :id';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->execute([':id' => $post_id]);

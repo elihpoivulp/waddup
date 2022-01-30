@@ -9,17 +9,16 @@
                             <img src="{{ load_placeholder() }}">
                         </div>
                         <div class="content">
-                            <a class="header">Kristy</a>
+                            <a class="header">{{ user.name }}</a>
                             <div class="meta">
-                                <span class="date">Joined in 2013</span>
+                                @{{ user.username }}
                             </div>
                         </div>
                         <div class="extra content">
-                            <a>
-                                <i class="paperclip icon"></i>
-                                22 Posts
-                            </a>
-                            <a class="ui bottom right attached label">Edit</a>
+                            <i class="paperclip icon"></i>
+                            {% set post_count = user.getAllPosts|length %}
+                            {{ post_count ~ ' Post' ~ (post_count > 1 ? 's' : '') }}
+                            <a href="{{ site_url('profile/settings') }}" class="ui bottom right attached label">Edit</a>
                         </div>
                     </div>
                 </div>

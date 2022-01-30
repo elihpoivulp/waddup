@@ -62,6 +62,18 @@ class User extends Model
     /**
      * @throws DBError
      */
+    public function getAllPosts(): array|bool
+    {
+        $sql = 'select * from posts where user_id = :id';
+        $s = self::db()->prepare($sql);
+        $s->setFetchMode(PDO::FETCH_CLASS, Post::class);
+        $s->execute([':id' => $this->id]);
+        return $s->fetchAll();
+    }
+
+    /**
+     * @throws DBError
+     */
     public function update(string $type = 'profile'): bool
     {
         if ($type === 'profile') {

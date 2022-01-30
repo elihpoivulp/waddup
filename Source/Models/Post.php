@@ -15,7 +15,7 @@ class Post extends Model
      */
     public static function getAll(): bool|array
     {
-        $sql = 'select p.*, u.username, u.photo as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 0 order by id desc';
+        $sql = 'select p.*, u.username, u.photo as writer, u.photo as user_photo, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id where p.expired = 0 order by id desc';
         return self::getResult($sql);
     }
 
@@ -24,9 +24,6 @@ class Post extends Model
      */
     public static function getPostsForScroll(?int $id = null): bool|array
     {
-        if ($id === 1) {
-            return [];
-        }
         $sql = 'select p.*, u.username as writer, u.photo as user_photo, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.id < :id and p.expired = 0 order by p.id desc limit 3';
         $params = [':id' => $id];
         if (is_null($id)) {
@@ -86,7 +83,7 @@ class Post extends Model
      */
     public static function findOne(int $id): bool|self
     {
-        $sql = 'select p.*, count(c.id) as comments_count, u.username as writer, u.photo as user_photo from posts p join comments c on p.id = c.post_id join users u on u.id = p.user_id where p.id = :id and expired = 0';
+        $sql = 'select p.*, count(c.id) as comments_count, u.username as writer, ifnull(u.photo, "avatar.png") as user_photo from posts p join comments c on p.id = c.post_id join users u on u.id = p.user_id where p.id = :id and expired = 0';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->bindValue(':id', $id);

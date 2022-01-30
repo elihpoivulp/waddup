@@ -52,11 +52,9 @@ class ErrorHandler
         } else {
             $file_name = date('Y-m-d') . '.txt';
             if (!file_exists(LOGS_PATH)) {
-                echo 'folder does not exist' . '<br>';
                 mkdir(LOGS_PATH, 0777, true);
             }
             if (!is_writable(LOGS_PATH)) {
-                echo 'chmod' . '<br>';
                 chmod(LOGS_PATH, 0777);
             }
 

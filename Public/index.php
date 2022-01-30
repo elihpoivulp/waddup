@@ -36,6 +36,7 @@ $router->addRoute('profile/settings', ['controller' => 'Settings', 'namespace' =
 $router->addRoute('settings/update/{update:(password|profile)}', ['controller' => 'Settings', 'action' => 'update', 'namespace' => 'Profile']);
 
 // posts
+$router->addRoute('posts/get', ['controller' => 'PostsActions', 'action' => 'get', 'namespace' => 'Profile']);
 $router->addRoute('posts/store', ['controller' => 'PostsActions', 'action' => 'store', 'namespace' => 'Profile']);
 $router->addRoute('posts/save-comment', ['controller' => 'CommentsActions', 'action' => 'store', 'namespace' => 'Profile']);
 $router->addRoute('posts/{id:\d+}', ['controller' => 'Posts', 'action' => 'show', 'namespace' => 'Profile']);

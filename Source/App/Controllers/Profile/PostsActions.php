@@ -36,4 +36,23 @@ class PostsActions extends LoginRequired
             Response::show404();
         }
     }
+
+    /**
+     * @throws PageNotFound
+     * @throws Exception
+     */
+    public function get()
+    {
+        try {
+           if ($this->request->isPost()) {
+               $data = $this->request->getBody();
+               $posts = Post::getPostsForScroll($data['id']);
+               echo json_encode(['new_csrf' => CSRFToken::generate(), 'posts' => $posts]);
+           }
+        } catch (CSRFException) {
+            Response::show404();
+        } catch (Exception $e) {
+            echo json_encode(['msg' => $e->getMessage()]);
+        }
+    }
 }

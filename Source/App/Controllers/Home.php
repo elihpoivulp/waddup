@@ -30,7 +30,8 @@ class Home extends Controller
     {
         $this->view->render('index.twig', [
             'title' => 'Home',
-            'posts' => Post::getAll()
+            'posts' => Post::getPostsForScroll()
+//            'posts' => Post::getAll()
         ]);
     }
 

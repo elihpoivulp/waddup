@@ -15,9 +15,36 @@ class Post extends Model
      */
     public static function getAll(): bool|array
     {
-        $s = self::db()->prepare('select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id order by id desc');
+        $sql = 'select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id order by id desc';
+        return self::getResult($sql);
+    }
+
+    /**
+     * @throws DBError
+     */
+    public static function getPostsForScroll(?int $id = null): bool|array
+    {
+        $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id where p.id < :id order by p.id desc limit 3';
+        $params = [':id' => $id];
+        if (is_null($id)) {
+            $sql = 'select p.*, u.username as writer, ifnull((select count(id) from comments where post_id = p.id), 0) as comments_count from posts p join users u on u.id = p.user_id order by p.id desc limit 3';
+            $params = [];
+        }
+        return self::getResult($sql, $params);
+    }
+
+    /**
+     * @throws DBError
+     */
+    private static function getResult(string $sql, array $params = []): bool|array
+    {
+        $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
-        $s->execute();
+        if ($params) {
+            $s->execute($params);
+        } else {
+            $s->execute();
+        }
         return $s->fetchAll();
     }
 

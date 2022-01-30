@@ -13,11 +13,7 @@
                     </div>
                     <div class="content">
                         <div class="summary">
-                            {% if comment.author %}
-                                {{ comment.author.name }}
-                            {% else %}
-                                Guest
-                            {% endif %}
+                            {{ comment.writer ?? 'Guest' }}
                             <div class="date">
                                 <time datetime="{{ comment.date_created }}">{{ time_ago(comment.date_created) }}</time>
                             </div>

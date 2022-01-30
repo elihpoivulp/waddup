@@ -15,7 +15,7 @@ class Post extends Model
      */
     public static function getAll(): bool|array
     {
-        $s = self::db()->prepare('select *, (select count(id) from comments where post_id = posts.id) as comments_count from posts order by id desc');
+        $s = self::db()->prepare('select p.*, u.username as writer, (select count(id) from comments where post_id = p.id) as comments_count from posts p join users u on u.id = p.user_id order by id desc');
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->execute();
         return $s->fetchAll();
@@ -34,7 +34,7 @@ class Post extends Model
      */
     public static function findOne(int $id): bool|self
     {
-        $sql = 'select p.*, count(c.id) as comments_count from posts p join comments c on p.id = c.post_id where p.id = :id';
+        $sql = 'select p.*, count(c.id) as comments_count, u.username as writer from posts p join comments c on p.id = c.post_id join users u on u.id = p.user_id where p.id = :id';
         $s = self::db()->prepare($sql);
         $s->setFetchMode(PDO::FETCH_CLASS, self::class);
         $s->bindValue(':id', $id);

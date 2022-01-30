@@ -109,8 +109,15 @@ class Settings extends LoginRequired
                         'showIcon' => 'check circle',
                         'message' => $type . ' has been updated!'
                     ]);
+                } else {
+                    Session::setFlash('settings', [
+                        'class' => 'orange',
+                        'showIcon' => 'exclamation circle',
+                        'message' => 'Failed to update ' . $type
+                    ]);
                 }
             }
+            Response::redirect('profile/settings');
         } else {
             Response::show404();
         }
